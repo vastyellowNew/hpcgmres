@@ -1,0 +1,38 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <cmath.h>
+
+#include <blasfeo.h>
+
+#include "s_single_shooting_continuation.h"
+
+
+#define REAL float
+
+#define SINGLE_SHOOTING_CONTINUATION s_single_shooting_continuation
+#define SINGLE_SHOOTING_CONTINUATION_STRSIZE s_single_shooting_continuation_strsize
+#define SINGLE_SHOOTING_CONTINUATION_MEMSIZE s_single_shooting_continuation_memsize
+#define SINGLE_SHOOTING_CONTINUATION_CREATE s_single_shooting_continuation_create
+#define SINGLE_SHOOTING_CONTINUATION_INTEGRATE_SOLUTION s_single_shooting_continuation_integrate_solution
+#define SINGLE_SHOOTING_CONTINUATION_COMPUTE_B s_single_shooting_continuation_compute_b
+#define SINGLE_SHOOTING_CONTINUATION_COMPUTE_AX s_single_shooting_continuation_compute_ax
+#define SINGLE_SHOOTING_CONTINUATION_GET_ERROR_NORM s_single_shooting_continuation_get_error_norm
+#define SINGLE_SHOOTING_CONTINUATION_RESET_HORIZON_LENGTH s_single_shooting_continuation_reset_horizon_length
+
+#define SINGLE_SHOOTING_OCP_MEMSIZE s_single_shooting_ocp_memsize
+#define SINGLE_SHOOTING_OCP_CREATE s_single_shooting_ocp_create
+#define SINGLE_SHOOTING_OCP_COMPUTE_OPTIMALITY_RESIDUAL s_single_shooting_ocp_compute_optimality_residual
+#define SINGLE_SHOOTING_OCP_PREDICT_STATE_FROM_SOLUTION s_single_shooting_ocp_predict_state_from_solution
+
+#define STRVEC blasfeo_svec
+#define SIZE_STRVEC blasfeo_memsize_svec
+#define CREATE_STRVEC blasfeo_memsize_svec
+
+#define VECCSE blasfeo_svecse
+#define VECAD blasfeo_svecad
+#define VECDOT blasfeo_sdot
+#define AXPY blasfeo_saxpy
+#define AXBPY blasfeo_saxbpy
+
+
+#include "x_single_shooting_continuation.c"

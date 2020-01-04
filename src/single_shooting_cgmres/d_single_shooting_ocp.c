@@ -1,0 +1,35 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+#include <blasfeo.h>
+
+#include "d_single_shooting_ocp.h"
+
+
+#define REAL double
+
+#define SINGLE_SHOOTING_OCP d_single_shooting_ocp
+#define SINGLE_SHOOTING_OCP_STRSIZE d_single_shooting_ocp_strsize
+#define SINGLE_SHOOTING_OCP_MEMSIZE d_single_shooting_ocp_memsize
+#define SINGLE_SHOOTING_OCP_CREATE d_single_shooting_ocp_create
+#define SINGLE_SHOOTING_OCP_COMPUTE_OPTIMALITY_RESIDUAL d_single_shooting_ocp_compute_optimality_residual
+#define SINGLE_SHOOTING_OCP_PREDICT_STATE_FROM_SOLUTION d_single_shooting_ocp_predict_state_from_solution
+
+#define NMPC_MODEL_F d_nmpc_model_f
+#define NMPC_MODEL_PHIX d_nmpc_model_phix
+#define NMPC_MODEL_HX d_nmpc_model_hx
+#define NMPC_MODEL_HU d_nmpc_model_hu
+
+#define TIME_VARYING_SMOOTH_HORIZON_CREATE d_time_varying_smooth_horizon_create
+#define TIME_VARYING_SMOOTH_HORIZON_GET_LENGTH d_time_varying_smooth_horizon_get_length
+#define TIME_VARYING_SMOOTH_HORIZON_RESET_LENGTH d_time_varying_smooth_horizon_reset_length
+
+#define STRVEC blasfeo_dvec
+#define SIZE_STRVEC blasfeo_memsize_dvec
+#define CREATE_STRVEC blasfeo_memsize_dvec
+
+#define VECCSE blasfeo_dvecse
+#define AXPY blasfeo_daxpy
+
+
+#include "x_single_shooting_ocp.c"

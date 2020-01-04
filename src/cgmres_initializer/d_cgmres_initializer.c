@@ -1,0 +1,37 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+#include <blasfeo.h>
+
+#include "d_cgmres_initializer.h"
+
+
+#define REAL double
+
+#define CGMRES_INITIALIZER d_cgmres_initializer
+#define CGMRES_INITIALIZER_STRSIZE d_cgmres_initializer_strsize
+#define CGMRES_INITIALIZER_MEMSIZE d_cgmres_initializer_memsize
+#define CGMRES_INITIALIZER_CREATE d_cgmres_initializer_create
+#define CGMRES_INITIALIZER_SET_TERMINATION_CRITERIONS d_cgmres_initializer_set_termination_criterions
+#define CGMRES_INITIALIZER_SET_INITIAL_GUESS_SOLUTION d_cgmres_initializer_set_initial_guess_solution
+#define CGMRES_INITIALIZER_COMPUTE_INITIAL_SOLUTION d_cgmres_initializer_compute_initial_solution
+#define CGMRES_INITIALIZER_GET_TERMINAL_COST_DERIVATIVE d_cgmres_initializer_get_terminal_cost_derivative
+
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_MEMSIZE d_inexact_newton_for_zero_horizon_ocp_memsize
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_CREATE d_inexact_newton_for_zero_horizon_ocp_create
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_GET_ERROR_NORM d_inexact_newton_for_zero_horizon_ocp_get_error_norm
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_GET_TERMINAL_COST_DERIVATIVE d_inexact_newton_for_zero_horizon_ocp_get_terminal_cost_derivative
+
+#define MFGMRES_MEMSIZE d_mfgmres_for_cgmres_initializer_memsize
+#define MFGMRES_CREATE d_mfgmres_for_cgmres_initializer_create
+#define MFGMRES_SOLVE_LINEAR_PROBLEM d_mfgmres_for_cgmres_initializer_solve_linear_problem
+
+#define STRVEC blasfeo_dvec
+#define SIZE_STRVEC blasfeo_memsize_dvec
+#define CREATE_STRVEC blasfeo_memsize_dvec
+#define VECCSE blasfeo_dvecse
+#define VECCP blasfeo_dveccp
+#define VECAD blasfeo_dvecad
+
+
+#include "x_cgmres_initializer.c"

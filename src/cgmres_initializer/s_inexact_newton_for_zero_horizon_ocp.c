@@ -1,0 +1,30 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+#include <blasfeo.h>
+
+#include "s_inexact_newton_for_zero_horizon_ocp.h"
+
+
+#define REAL float
+
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP s_inexact_newton_for_zero_horizon_ocp
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_STRSIZE s_inexact_newton_for_zero_horizon_ocp_strsize
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_MEMSIZE s_inexact_newton_for_zero_horizon_ocp_memsize
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_CREATE s_inexact_newton_for_zero_horizon_ocp_create
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_COMPUTE_B s_inexact_newton_for_zero_horizon_ocp_compute_b
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_COMPUTE_AX s_inexact_newton_for_zero_horizon_ocp_compute_ax
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_GET_ERROR_NORM s_inexact_newton_for_zero_horizon_ocp_get_error_norm
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_GET_TERMINAL_COST_DERIVATIVE s_inexact_newton_for_zero_horizon_ocp_get_terminal_cost_derivative
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_MFGMRES_ARGS s_inexact_newton_for_zero_horizon_ocp_mfgmres_args
+
+#define STRVEC blasfeo_svec
+#define SIZE_STRVEC blasfeo_memsize_svec
+#define CREATE_STRVEC blasfeo_memsize_svec
+#define VECCSE blasfeo_svecse
+#define VECDOT blasfeo_sdot
+#define AXPY blasfeo_saxpy
+#define AXBPY blasfeo_saxbpy
+
+
+#include "x_inexact_newton_for_zero_horizon_ocp.c"
