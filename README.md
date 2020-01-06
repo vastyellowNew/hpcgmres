@@ -1,3 +1,5 @@
+This repository is under development
+
 ## Introduction
 This is a high-performance continuation/GMRES (C/GMRES) method for nonlinear model predictive control, HPCGMRES.
 This is intended to embedded optimization using high-performance linear algebra package [BLASFEO](https://github.com/giaf/blasfeo.git) and inspired by [HPIPM](https://github.com/giaf/hpipm.git).
