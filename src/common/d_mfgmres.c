@@ -17,8 +17,8 @@
 #define STRMAT blasfeo_dmat
 #define SIZE_STRMAT blasfeo_memsize_dmat
 #define SIZE_STRVEC blasfeo_memsize_dvec
-#define CREATE_STRMAT blasfeo_memsize_dmat
-#define CREATE_STRVEC blasfeo_memsize_dvec
+#define CREATE_STRMAT blasfeo_create_dmat
+#define CREATE_STRVEC blasfeo_create_dvec
 
 #define VECIN1 blasfeo_dvecin1
 #define VECEX1 blasfeo_dvecex1

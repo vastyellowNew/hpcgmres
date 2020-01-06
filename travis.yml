@@ -1,0 +1,15 @@
+language: cpp
+
+sudo: required
+
+compiler:
+  - gcc
+  - clang
+
+script:
+  - cd unittest
+  - mkdir -p build 
+  - cd build
+  - cmake ..
+  - make
+  - ctest 

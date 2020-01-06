@@ -5,11 +5,6 @@
 #include <math.h>
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 struct d_time_varying_smooth_horizon {
   double T_f;
   double alpha;
@@ -27,11 +22,6 @@ double d_time_varying_smooth_horizon_get_length(
 
 void d_time_varying_smooth_horizon_reset_length(
     struct d_time_varying_smooth_horizon *horizon, double initial_time);
-
-
-#ifdef __cplusplus
-} /* extern "C" */
-#endif
 
 
 #endif // HPCGMRES_D_TIME_VARYING_SMOOTH_HORIZON_H_
