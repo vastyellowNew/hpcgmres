@@ -23,7 +23,7 @@ protected:
   }
 
   struct s_time_varying_smooth_horizon horizon;
-  double T_f, alpha, initial_time;
+  float T_f, alpha, initial_time;
 };
 
 
