@@ -1,0 +1,29 @@
+add_executable(
+    d_zero_horizon_ocp_test
+    d_zero_horizon_ocp_test.cpp
+    ${SRC_DIR}/cgmres_initializer/d_zero_horizon_ocp.c
+    ${NMPC_MODEL_DIR}/d_nmpc_model.c
+)
+target_include_directories(
+    d_zero_horizon_ocp_test
+    PUBLIC
+    ${BLASFEO_INCLUDE_PATH}
+    ${INCLUDE_DIR}/cgmres_initializer
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    d_time_varying_smooth_horizon_test 
+    PUBLIC
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    d_time_varying_smooth_horizon_test 
+    googletest
+)
+add_test(
+    NAME d_time_varying_smooth_horizon_test 
+    COMMAND $<TARGET_FILE:d_time_varying_smooth_horizon_test>
+)

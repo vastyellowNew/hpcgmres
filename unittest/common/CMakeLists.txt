@@ -69,11 +69,11 @@ target_include_directories(
     ${GMOCK_INCLUDE_PATH}
     ${GTEST_LIBRARY_PATH}
 )
-target_link_directories(
-    d_givens_rotation_test
-    PUBLIC
-    ${BLASFEO_LIB_PATH}
-)
+# target_link_directories(
+#     d_givens_rotation_test
+#     PUBLIC
+#     ${BLASFEO_LIB_PATH}
+# )
 target_link_libraries(
     d_givens_rotation_test
     PUBLIC
@@ -105,11 +105,11 @@ target_include_directories(
     ${GMOCK_INCLUDE_PATH}
     ${GTEST_LIBRARY_PATH}
 )
-target_link_directories(
-    s_givens_rotation_test
-    PUBLIC
-    ${BLASFEO_LIB_PATH}
-)
+# target_link_directories(
+#     s_givens_rotation_test
+#     PUBLIC
+#     ${BLASFEO_LIB_PATH}
+# )
 target_link_libraries(
     s_givens_rotation_test
     PUBLIC
