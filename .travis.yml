@@ -6,6 +6,16 @@ compiler:
   - gcc
   - clang
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-precise-3.7
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
+
 script:
   - git clone https://github.com/giaf/blasfeo.git
   - cd blasfeo
