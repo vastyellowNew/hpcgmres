@@ -22,7 +22,8 @@ add_dependencies(
     googletest
 )
 add_test(
-    NAME d_time_varying_smooth_horizon_test COMMAND $<TARGET_FILE:d_time_varying_smooth_horizon_test>
+    NAME d_time_varying_smooth_horizon_test 
+    COMMAND $<TARGET_FILE:d_time_varying_smooth_horizon_test>
 )
 
 add_executable(
@@ -49,8 +50,10 @@ add_dependencies(
     googletest
 )
 add_test(
-    NAME s_time_varying_smooth_horizon_test COMMAND $<TARGET_FILE:s_time_varying_smooth_horizon_test>
+    NAME s_time_varying_smooth_horizon_test 
+    COMMAND $<TARGET_FILE:s_time_varying_smooth_horizon_test>
 )
+
 
 add_executable(
     d_givens_rotation_test
@@ -60,14 +63,21 @@ add_executable(
 target_include_directories(
     d_givens_rotation_test
     PUBLIC
+    ${BLASFEO_INCLUDE_PATH}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
     ${GTEST_LIBRARY_PATH}
 )
+target_link_directories(
+    d_givens_rotation_test
+    PUBLIC
+    ${BLASFEO_LIB_PATH}
+)
 target_link_libraries(
     d_givens_rotation_test
     PUBLIC
+    blasfeo
     GTest::GTest
     GTest::GMock
 )
@@ -76,8 +86,10 @@ add_dependencies(
     googletest
 )
 add_test(
-    NAME d_givens_rotation_test COMMAND $<TARGET_FILE:d_givens_rotation_test>
+    NAME d_givens_rotation_test 
+    COMMAND $<TARGET_FILE:d_givens_rotation_test>
 )
+
 
 add_executable(
     s_givens_rotation_test
@@ -87,14 +99,21 @@ add_executable(
 target_include_directories(
     s_givens_rotation_test
     PUBLIC
+    ${BLASFEO_INCLUDE_PATH}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
     ${GTEST_LIBRARY_PATH}
 )
+target_link_directories(
+    s_givens_rotation_test
+    PUBLIC
+    ${BLASFEO_LIB_PATH}
+)
 target_link_libraries(
     s_givens_rotation_test
     PUBLIC
+    blasfeo
     GTest::GTest
     GTest::GMock
 )
@@ -103,5 +122,6 @@ add_dependencies(
     googletest
 )
 add_test(
-    NAME s_givens_rotation_test COMMAND $<TARGET_FILE:s_givens_rotation_test>
+    NAME s_givens_rotation_test 
+    COMMAND $<TARGET_FILE:s_givens_rotation_test>
 )

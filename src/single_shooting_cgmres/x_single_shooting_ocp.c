@@ -116,7 +116,7 @@ void SINGLE_SHOOTING_OCP_COMPUTE_OPTIMALITY_RESIDUAL(
   struct STRVEC *x_sequence_vec = ocp->x_sequence_vec;
   struct STRVEC *lmd_sequence_vec = ocp->lmd_sequence_vec;
   struct STRVEC *dx_vec = ocp->dx_vec;
-  REAL horizon_length = TIME_VARYING_SMOOTH_HORIZON_GET_LENGTH(ocp->horizon, 
+  REAL horizon_length = TIME_VARYING_SMOOTH_HORIZON_GET_LENGTH(&ocp->horizon, 
                                                                current_time);
   REAL delta_tau = horizon_length / ocp->N;
 

@@ -7,6 +7,10 @@ compiler:
   - clang
 
 script:
+  - git clone https://github.com/giaf/blasfeo.git
+  - cd blasfeo
+  - make static_library -j $(nproc) TARGET=GENERIC
+  - cd ..
   - cd unittest
   - mkdir -p build 
   - cd build

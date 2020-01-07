@@ -15,7 +15,7 @@ extern "C" {
 
 struct d_single_shooting_ocp {
   struct d_nmpc_model *model;
-  struct d_time_varying_smooth_horizon *horizon;
+  struct d_time_varying_smooth_horizon horizon;
   struct blasfeo_dvec *dx_vec;
   struct blasfeo_dvec *x_sequence_vec;
   struct blasfeo_dvec *lmd_sequence_vec;

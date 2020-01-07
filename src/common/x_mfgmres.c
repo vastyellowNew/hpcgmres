@@ -7,15 +7,12 @@ int MFGMRES_MEMSIZE(int dim_linear_problem, int kmax) {
   int size = 0;
 
   // size of pointers and int
-  size += 1*sizeof(struct STRMAT); // hessenberg_mat
-  size += 1*(kmax+1)*sizeof(struct STRVEC); // basis_vec
-  size += 4*sizeof(struct STRVEC); // b_vec, givens_c_vec, givens_s_vec, g_vec
-
-  // size of matrices and vectors
-  size += 1*SIZE_STRMAT(kmax+1, kmax+1); // hessenberg_mat
-  size += 1*SIZE_STRVEC((kmax+1)*dim_linear_problem); // basis_mat
-  size += 1*SIZE_STRVEC(dim_linear_problem); // b_vec 
-  size += 3*SIZE_STRVEC(kmax+1); // givens_c_vec, givens_s_vec, g_vec
+  size += (kmax+1)*sizeof(REAL*); // hessenberg_mat
+  size += (kmax+1)*(kmax+1)*sizeof(REAL); // hessenberg_mat
+  size += (kmax+1)*sizeof(REAL*); // basis_mat
+  size += (kmax+1)*(dim_linear_problem)*sizeof(REAL); // basis_mat
+  size += dim_linear_problem*sizeof(REAL); // b_vec 
+  size += 3*(kmax+1) * sizeof(REAL); // givens_c_vec, givens_s_vec, g_vec
 
   size = (size+63)/64*64; // make multiple of typical cache line size
   size += 64; // align to typical cache line size
@@ -25,117 +22,45 @@ int MFGMRES_MEMSIZE(int dim_linear_problem, int kmax) {
 
 
 void MFGMRES_CREATE(struct MFGMRES *mfgmres, int dim_linear_problem, 
-                    int kmax, void *memory) {
-  // zero memory (to avoid corrupted memory like e.g. NaN)
-  int memsize = MFGMRES_MEMSIZE(dim_linear_problem, kmax);
-  int memsize_m8 = memsize/8; // sizeof(double) is 8
-  //	int memsize_r8 = memsize - 8*memsize_m8;
-  double *double_ptr = mem;
-  int ii;
-  for(ii=0; ii<memsize_m8-7; ii+=8) {
-    double_ptr[ii+0] = 0.0;
-    double_ptr[ii+1] = 0.0;
-    double_ptr[ii+2] = 0.0;
-    double_ptr[ii+3] = 0.0;
-    double_ptr[ii+4] = 0.0;
-    double_ptr[ii+5] = 0.0;
-    double_ptr[ii+6] = 0.0;
-    double_ptr[ii+7] = 0.0;
-    }
-  // XXX exploit that it is multiple of 64 bytes !!!!!
-  // for(; ii<memsize_m8; ii++) {
-  // double_ptr[ii] = 0.0;
-  // }
-  // char *char_ptr = (char *) (&double_ptr[ii]);
-  // for(ii=0; ii<memsize_r8; ii++) {
-  // char_ptr[ii] = 0;
-  // }
+                    int kmax) {
+  ALLOCATE_MAT(kmax+1, kmax+1, mfgmres->hessenberg_mat);
+  ALLOCATE_MAT(kmax+1, dim_linear_problem, mfgmres->basis_mat);
+  ALLOCATE_VEC(dim_linear_problem, mfgmres->b_vec);
+  ALLOCATE_VEC(kmax+1, mfgmres->givens_c_vec);
+  ALLOCATE_VEC(kmax+1, mfgmres->givens_s_vec);
+  ALLOCATE_VEC(kmax+1, mfgmres->g_vec);
+}
 
-  // matrix struct stuff
-  struct STRMAT *sm_ptr = (struct STRMAT *) memory;
-  mfgmres->hessenberg_mat = sm_ptr;
-  sm_ptr += 1;
 
-  // vector struct stuff
-  struct STRVEC *sv_ptr = (struct STRVEC *) sm_ptr;
-  mfgmres->basis_vec = sv_ptr;
-  sv_ptr += kmax+1;
-  mfgmres->b_vec = sv_ptr;
-  sv_ptr += 1;
-  mfgmres->givens_c_vec = sv_ptr;
-  sv_ptr += 1;
-  mfgmres->givens_s_vec = sv_ptr;
-  sv_ptr += 1;
-  mfgmres->g_vec = sv_ptr;
-  sv_ptr += 1;
-
-  // align to typical cache line size
-  size_t s_ptr = (size_t) sv_ptr;
-  s_ptr = (s_ptr+63)/64*64;
-
-  // void stuff
-  char *c_ptr = (char *) s_ptr;
-  char *tmp_ptr;
-
-  CREATE_STRMAT(kmax+1, kmax+1, mfgmres->hessenberg_mat, c_ptr);
-  c_ptr += mfgmres->hessenberg_mat->memsize;
-  MATCSE(kmax+1, kmax+1, 0.0, mfgmres->hessenberg_mat, 0, 0);
-
-  tmp_ptr = c_ptr;
-  c_ptr += SIZE_STRVEC((kmax+1)*dim_linear_problem);
-  for (ii=0; ii<kmax+1; ++ii) {
-    CREATE_STRVEC(dim_linear_problem, mfgmres->basis_vec+ii, tmp_ptr);
-    tmp_ptr += dim_linear_problem*sizeof(REAL);
-    VECCSE(dim_linear_problem, 0.0, mfgmres->basis_vec+ii, 0);
-  }
-
-  CREATE_STRVEC(dim_linear_problem, mfgmres->b_vec, c_ptr);
-  c_ptr += mfgmres->b_vec->memsize;
-  VECCSE(dim_linear_problem, 0.0, mfgmres->b_vec, 0);
-
-  CREATE_STRVEC(kmax+1, mfgmres->givens_c_vec, c_ptr);
-  c_ptr += mfgmres->givens_c_vec->memsize;
-  VECCSE(kmax+1, 0.0, mfgmres->givens_c_vec, 0);
-
-  CREATE_STRVEC(kmax+1, mfgmres->givens_s_vec, c_ptr);
-  c_ptr += mfgmres->givens_s_vec->memsize;
-  VECCSE(kmax+1, 0.0, mfgmres->givens_s_vec, 0);
-
-  CREATE_STRVEC(kmax+1, mfgmres->g_vec, c_ptr);
-  c_ptr += mfgmres->g_vec->memsize;
-  VECCSE(kmax+1, 0.0, mfgmres->g_vec, 0);
-
-  mfgmres->dim_linear_problem = dim_linear_problem;
-  mfgmres->kmax = kmax;
-  mfgmres->memsize = MFGMRES_MEMSIZE(dim_linear_problem, kmax);
-
-#if defined(RUNTIME_CHECKS)
-  if(c_ptr > ((char *) mem) + mfgmres->memsize) {
-    printf("\nerror: MFGMRES_CREATE: outside memory bounds!\n\n");
-    exit(1);
-  }
-#endif
+void MFGMRES_DELETE(struct MFGMRES *mfgmres, int dim_linear_problem, 
+                    int kmax) {
+  FREE_MAT()
+  FREE_MAT(mfgmres->hessenberg_mat);
+  FREE_MAT(mfgmres->basis_mat);
+  FREE_VEC(mfgmres->b_vec);
+  FREE_VEC(mfgmres->givens_c_vec);
+  FREE_VEC(mfgmres->givens_s_vec);
+  FREE_VEC(mfgmres->g_vec);
 }
 
 
 void MFGMRES_SOLVE_LINEAR_PROBLEM(
     struct MFGMRES *mfgmres, struct LINEAR_PROBLEM *linear_problem, 
-    struct LINEAR_PROBLEM_ARGS *linear_problem_args,
-    struct STRVEC *solution_vec) {
+    struct LINEAR_PROBLEM_ARGS *linear_problem_args, REAL *solution) {
 
-  int dim_linear_problem = mfgmres->dim->dim_linear_problem;
-  int kmax = mfgmres->dim->kmax;
-  struct STRMAT *hessenberg_mat = mfgmres->hessenberg_mat;
-  struct STRVEC *basis_vec = mfgmres->basis_vec;
-  struct STRVEC *givens_c_vec = mfgmres->givens_c_vec;
-  struct STRVEC *givens_s_vec = mfgmres->givens_s_vec;
-  struct STRVEC *g_vec = mfgmres->g_vec;
+  int dim_linear_problem = mfgmres->dim_linear_problem;
+  int kmax = mfgmres->kmax;
+  REAL **hessenberg_mat = mfgmres->hessenberg_mat;
+  REAL **basis_vec = mfgmres->basis_vec;
+  REAL *givens_c_vec = mfgmres->givens_c_vec;
+  REAL *givens_s_vec = mfgmres->givens_s_vec;
+  REAL *g_vec = mfgmres->g_vec;
 
   VECCSE(kmax+1, 0., givens_c_vec, 0);
   VECCSE(kmax+1, 0., givens_s_vec, 0);
   VECCSE(kmax+1, 0., g_vec, 0);
   // Generates the initial basis of the Krylov subspace.
-  B_FUNC(linear_problem, linear_problem_args, solution_vec, b_vec);
+  LINEAR_PROBLEM_COMPUTE_B(linear_problem, linear_problem_args, solution, b_vec);
   // g_vec[0] = sqrt(b_vec^2)
   VECIN1(sqrt(VECDOT(dim_linear_problem, b_vec, 0, b_vec, 0)), g_vec, 0);
   // basis_mat[0] = b_vec / g_vec[0]
@@ -144,15 +69,17 @@ void MFGMRES_SOLVE_LINEAR_PROBLEM(
   // k : the dimension of the Krylov subspace at the current iteration.
   int k;
   for (k=0; k<kmax_; ++k) {
-    AX_FUNC(linear_problem, linear_problem_args, basis_vec+k, basis_vec+(k+1));
+    LINEAR_PROBLEM_COMPUTE_AX(linear_problem, linear_problem_args, basis_vec+k, 
+                              basis_vec+k+1);
     for (int j=0; j<=k; ++j) {
-      MATIN1(VECDOT(dim_linear_problem, basis_vec, (k+1)*dim_linear_problem, 
-                      basis_vec, j*dim_linear_problem), hessenberg_mat, k, j);
+      MATIN1(VECDOT(dim_linear_problem, basis_vec+(k+1), 
+                    (k+1)*dim_linear_problem, basis_vec, j*dim_linear_problem), 
+             hessenberg_mat, k, j);
       VECCAD(dim_linear_problem, -MATEX1(hessenberg_mat, k, j), basis_vec, 
-              j*dim_linear_problem, basis_vec, (k+1)*dim_linear_problem);
+             j*dim_linear_problem, basis_vec, (k+1)*dim_linear_problem);
       MATIN1(sqrt(VECDOT(dim_linear_problem, 
-                          basis_vec, (k+1)*dim_linear_problem, 
-                          basis_vec, (k+1)*dim_linear_problem)), 
+                  basis_vec, (k+1)*dim_linear_problem, 
+                  basis_vec, (k+1)*dim_linear_problem)), 
               hessenberg_mat, k, k+1);
     if (abs(MATEX1(hessenberg_mat, k, k+1)) < MACHINE_EPSILON)) {
 #if defined(RUNTIME_CHECKS)

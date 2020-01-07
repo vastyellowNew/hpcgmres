@@ -7,6 +7,8 @@ include(cmake/gtest.cmake)
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/../src)
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/../include)
+set(BLASFEO_INCLUDE_PATH ${CMAKE_SOURCE_DIR}/../blasfeo/include)
+set(BLASFEO_LIB_PATH ${CMAKE_SOURCE_DIR}/../blasfeo/lib)
 
 add_subdirectory(
     ${CMAKE_SOURCE_DIR}/common
