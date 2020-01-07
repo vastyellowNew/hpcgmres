@@ -82,7 +82,7 @@ void ZERO_HORIZON_OCP_CREATE(struct ZERO_HORIZON_OCP *ocp, void *memory) {
 
 void ZERO_HORIZON_OCP_COMPUTE_OPTIMALITY_RESIDUAL(
     struct ZERO_HORIZON_OCP *ocp, REAL current_time, 
-    struct STRVEC *current_state, struct blasfeo_dvec *solution, 
+    struct STRVEC *current_state, struct STRVEC *solution, 
     struct STRVEC *optimality_residual) {
   NMPC_MODEL_PHIX(ocp->model, current_time, current_state->pa, 
                   ocp->lmd_vec->pa);

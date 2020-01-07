@@ -1,6 +1,12 @@
-language: cpp
+os:
+  - linux
+  - osx
+
+dist: trusty
 
 sudo: required
+
+language: cpp
 
 compiler:
   - gcc
@@ -17,6 +23,7 @@ addons:
       - cmake-data
 
 script:
+  - cmake -- version
   - git clone https://github.com/giaf/blasfeo.git
   - cd blasfeo
   - make static_library -j $(nproc) TARGET=GENERIC
