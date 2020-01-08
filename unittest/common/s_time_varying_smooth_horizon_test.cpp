@@ -28,11 +28,6 @@ protected:
 };
 
 
-TEST_F(s_time_varying_smooth_horizon_test, strsize) {
-  EXPECT_EQ(s_time_varying_smooth_horizon_strsize(), 3*sizeof(float));
-}
-
-
 TEST_F(s_time_varying_smooth_horizon_test, get_length) {
   float current_time = (float)rand()/RAND_MAX + initial_time;
   float expect_length = T_f * (1.0 - exp(-alpha*(current_time - initial_time)));

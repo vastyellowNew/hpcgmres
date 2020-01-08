@@ -8,22 +8,87 @@ target_include_directories(
     d_zero_horizon_ocp_test
     PUBLIC
     ${BLASFEO_INCLUDE_PATH}
+    ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
     ${GTEST_LIBRARY_PATH}
 )
 target_link_libraries(
-    d_time_varying_smooth_horizon_test 
+    d_zero_horizon_ocp_test
     PUBLIC
+    blasfeo
     GTest::GTest
     GTest::GMock
 )
 add_dependencies(
-    d_time_varying_smooth_horizon_test 
+    d_zero_horizon_ocp_test
     googletest
 )
 add_test(
-    NAME d_time_varying_smooth_horizon_test 
-    COMMAND $<TARGET_FILE:d_time_varying_smooth_horizon_test>
+    NAME d_zero_horizon_ocp_test
+    COMMAND $<TARGET_FILE:d_zero_horizon_ocp_test>
+)
+
+add_executable(
+    s_zero_horizon_ocp_test
+    s_zero_horizon_ocp_test.cpp
+    ${SRC_DIR}/cgmres_initializer/s_zero_horizon_ocp.c
+    ${NMPC_MODEL_DIR}/s_nmpc_model.c
+)
+target_include_directories(
+    s_zero_horizon_ocp_test
+    PUBLIC
+    ${BLASFEO_INCLUDE_PATH}
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/cgmres_initializer
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    s_zero_horizon_ocp_test
+    PUBLIC
+    blasfeo
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    s_zero_horizon_ocp_test
+    googletest
+)
+add_test(
+    NAME s_zero_horizon_ocp_test
+    COMMAND $<TARGET_FILE:s_zero_horizon_ocp_test>
+)
+
+add_executable(
+    d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
+    d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test.cpp
+    ${NMPC_MODEL_DIR}/d_nmpc_model.c
+)
+target_include_directories(
+    d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
+    PUBLIC
+    ${BLASFEO_INCLUDE_PATH}
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/cgmres_initializer
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
+    PUBLIC
+    blasfeo
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
+    googletest
+)
+add_test(
+    NAME d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
+    COMMAND $<TARGET_FILE:d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test>
 )

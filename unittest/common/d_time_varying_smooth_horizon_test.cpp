@@ -27,11 +27,6 @@ protected:
 };
 
 
-TEST_F(d_time_varying_smooth_horizon_test, strsize) {
-  EXPECT_EQ(d_time_varying_smooth_horizon_strsize(), 3*sizeof(double));
-}
-
-
 TEST_F(d_time_varying_smooth_horizon_test, get_length) {
   double current_time = (double)rand()/RAND_MAX + initial_time;
   double expect_length = T_f * (1.0 - exp(-alpha*(current_time - initial_time)));

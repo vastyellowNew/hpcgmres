@@ -13,8 +13,8 @@ extern "C" {
 
 
 struct s_zero_horizon_ocp {
-  struct s_nmpc_model *model;
-  struct blasfeo_svec *lmb_vec;
+  struct s_nmpc_model model;
+  struct blasfeo_svec *lmd_vec;
   int dimx;
   int dimu;
   int dimc;
@@ -27,7 +27,7 @@ struct s_zero_horizon_ocp {
 int s_zero_horizon_ocp_strsize();
 
 // returns the size of the strage
-int s_zero_horizon_ocp_memsize(struct s_zero_horizon_ocp *ocp);
+int s_zero_horizon_ocp_memsize();
 
 void s_zero_horizon_ocp_create(struct s_zero_horizon_ocp *ocp, void *memory);
 

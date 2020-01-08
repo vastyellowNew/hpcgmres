@@ -13,5 +13,6 @@ set(BLASFEO_LIB_PATH ${CMAKE_SOURCE_DIR}/../blasfeo/lib)
 
 link_directories(${BLASFEO_LIB_PATH})
 
+add_subdirectory(${CMAKE_SOURCE_DIR}/nmpc_model)
 add_subdirectory(${CMAKE_SOURCE_DIR}/common)
-# add_subdirectory(${CMAKE_SOURCE_DIR}/cgmres_initializer)
+add_subdirectory(${CMAKE_SOURCE_DIR}/cgmres_initializer)

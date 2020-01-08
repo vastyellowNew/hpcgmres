@@ -3,6 +3,26 @@ int NMPC_MODEL_STRSIZE() {
 }
 
 
+void NMPC_MODEL_CREATE(struct NMPC_MODEL *model) {
+  model->dimx = 4;
+  model->dimu = 2;
+  model->dimc = 1;
+
+  model->m_c = 2;
+  model->m_p = 0.2;
+  model->l = 0.5;
+  model->g = 9.80665;
+  model->u_min = -15;
+  model->u_max = 15;
+  model->dummy_weight = 0.1;
+
+  model->q[0] = 2.5; model->q[1] = 10; model->q[2] = 0.01; model->q[3] = 0.01; 
+  model->r[0] = 1.0; model->r[1] = 0.01; 
+  model->q_terminal[0] = 2.5; model->q_terminal[1] = 10; model->q_terminal[2] = 0.01; model->q_terminal[3] = 0.01; 
+  model->x_ref[0] = 0; model->x_ref[1] = M_PI; model->x_ref[2] = 0; model->x_ref[3] = 0; 
+}
+
+
 void NMPC_MODEL_F(struct NMPC_MODEL *model, REAL t, REAL *x, REAL *u, REAL *f) {
   REAL x0 = sin(x[1]);
   REAL x1 = 1.0/(model->m_c + model->m_p*pow(x0, 2));
@@ -56,4 +76,19 @@ void NMPC_MODEL_HU(struct NMPC_MODEL *model, REAL t, REAL *x, REAL *u,
   hu[0] = lmd[2]*x1 + model->r[0]*u[0] + u[0]*x0 - lmd[3]*x1*cos(x[1])/model->l;
   hu[1] = -model->dummy_weight + u[1]*x0;
   hu[2] = pow(u[0], 2) + pow(u[1], 2) - 1.0/4.0*pow(model->u_max - model->u_min, 2);
+}
+
+
+int NMPC_MODEL_DIMX() {
+  return 4;
+}
+
+
+int NMPC_MODEL_DIMU() {
+  return 2;
+}
+
+
+int NMPC_MODEL_DIMC() {
+  return 1;
 }

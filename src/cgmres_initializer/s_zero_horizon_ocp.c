@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include <stdio.h>
 
 #include <blasfeo.h>
@@ -19,12 +18,14 @@
 #define NMPC_MODEL_CREATE s_nmpc_model_create
 #define NMPC_MODEL_PHIX s_nmpc_model_phix
 #define NMPC_MODEL_HU s_nmpc_model_hu
+#define NMPC_MODEL_DIMX s_nmpc_model_dimx
+#define NMPC_MODEL_DIMU s_nmpc_model_dimu
+#define NMPC_MODEL_DIMC s_nmpc_model_dimc
 
 #define STRVEC blasfeo_svec
 #define SIZE_STRVEC blasfeo_memsize_svec
-#define CREATE_STRVEC blasfeo_memsize_svec
-
-#define VECCSE blasfeo_svecse
+#define CREATE_STRVEC blasfeo_create_svec
+#define VECSE blasfeo_svecse
 
 
 #include "x_zero_horizon_ocp.c"

@@ -13,8 +13,8 @@ extern "C" {
 
 
 struct d_zero_horizon_ocp {
-  struct d_nmpc_model *model;
-  struct blasfeo_dvec *lmb_vec;
+  struct d_nmpc_model model;
+  struct blasfeo_dvec *lmd_vec;
   int dimx;
   int dimu;
   int dimc;
@@ -27,7 +27,7 @@ struct d_zero_horizon_ocp {
 int d_zero_horizon_ocp_strsize();
 
 // returns the size of the strage
-int d_zero_horizon_ocp_memsize(struct d_zero_horizon_ocp *ocp);
+int d_zero_horizon_ocp_memsize();
 
 void d_zero_horizon_ocp_create(struct d_zero_horizon_ocp *ocp, void *memory);
 
