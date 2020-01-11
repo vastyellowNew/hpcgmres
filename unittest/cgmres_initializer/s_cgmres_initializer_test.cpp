@@ -17,7 +17,9 @@ extern "C" {
 class s_cgmres_initializer_test : public ::testing::Test {
 protected:
   virtual void SetUp() {
-    finite_diff = 1.0e-08;
+    srand(time(NULL));
+    finite_diff = 1.0e-02;
+    delta = finite_diff;
     dimx = s_inexact_newton_for_zero_horizon_ocp_dimx();
     dimu = s_inexact_newton_for_zero_horizon_ocp_dimu();
     dimc = s_inexact_newton_for_zero_horizon_ocp_dimc();
@@ -55,7 +57,7 @@ protected:
   struct s_inexact_newton_for_zero_horizon_ocp newton;
   struct s_inexact_newton_for_zero_horizon_ocp_mfgmres_args args;
   int dimx, dimu, dimc, dimuc, dim_solution, kmax;
-  float finite_diff, current_time;
+  float finite_diff, current_time, delta;
   float *state, *solution, *update, *solution_ref;
 };
 
@@ -72,7 +74,7 @@ TEST_F(s_cgmres_initializer_test, memsize) {
 
 
 TEST_F(s_cgmres_initializer_test, parameters) {
-  EXPECT_EQ(1.0e-08, initializer.newton_residual_tolerance);
+  EXPECT_EQ((float)1.0e-08, initializer.newton_residual_tolerance);
   EXPECT_EQ(50, initializer.max_newton_iteration);
 
   float tol = 0.5;

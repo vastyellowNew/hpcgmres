@@ -16,6 +16,7 @@ extern "C" {
 class d_mfgmres_for_cgmres_initializer_test : public ::testing::Test {
 protected:
   virtual void SetUp() {
+    srand(time(NULL));
     finite_diff = 1.0e-08;
     dimx = d_inexact_newton_for_zero_horizon_ocp_dimx();
     dimu = d_inexact_newton_for_zero_horizon_ocp_dimu();
@@ -29,10 +30,10 @@ protected:
     update = allocate_dvec(dim_solution);
     current_time = (double)rand()/RAND_MAX;
     for (int i=0; i<dimx; ++i) {
-      state[i] = 0.0; 
+      state[i] = (double)rand()/RAND_MAX;
     }
     for (int i=0; i<dim_solution; ++i) {
-      solution[i] = 0.1;
+      solution[i] = (double)rand()/RAND_MAX;
     }
   }
 

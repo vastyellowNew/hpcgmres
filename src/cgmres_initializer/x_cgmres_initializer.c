@@ -33,6 +33,7 @@ void CGMRES_INITIALIZER_CREATE(struct CGMRES_INITIALIZER *initializer,
   initializer->solution_update = ALLOCATE_VEC(dimuc);
 
   initializer->newton_residual_tolerance = 1.0e-08;
+
   initializer->max_newton_iteration = 50;
   initializer->dim_solution = dimuc;
   initializer->memsize = CGMRES_INITIALIZER_MEMSIZE(kmax);

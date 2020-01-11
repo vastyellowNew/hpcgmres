@@ -6,6 +6,7 @@
 #include "s_linear_algebra.h"
 
 
+#define SINGLE_PRECISION
 #define REAL float
 
 #define CGMRES_INITIALIZER_STRSIZE s_cgmres_initializer_strsize

@@ -16,7 +16,8 @@ extern "C" {
 class s_mfgmres_for_cgmres_initializer_test : public ::testing::Test {
 protected:
   virtual void SetUp() {
-    finite_diff = 1.0e-06;
+    srand(time(NULL));
+    finite_diff = 1.0e-02;
     dimx = s_inexact_newton_for_zero_horizon_ocp_dimx();
     dimu = s_inexact_newton_for_zero_horizon_ocp_dimu();
     dimc = s_inexact_newton_for_zero_horizon_ocp_dimc();
@@ -29,10 +30,10 @@ protected:
     update = allocate_svec(dim_solution);
     current_time = (float)rand()/RAND_MAX;
     for (int i=0; i<dimx; ++i) {
-      state[i] = 0.0; 
+      state[i] = (float)rand()/RAND_MAX;
     }
     for (int i=0; i<dim_solution; ++i) {
-      solution[i] = 0.0;
+      solution[i] = (float)rand()/RAND_MAX;
     }
   }
 
@@ -73,14 +74,11 @@ TEST_F(s_mfgmres_for_cgmres_initializer_test, solve_linear_problem) {
   args.current_solution_ptr = solution;
   int imax = 100;
   for (int i=0; i<imax; ++i) {
-    std::cout << s_inexact_newton_for_zero_horizon_ocp_get_error_norm(&newton, 
-                                                             current_time, 
-                                                             state, solution) << std::endl;
     s_mfgmres_for_cgmres_initializer_solve_linear_problem(&mfgmres, &newton, 
                                                           &args, update);
     hpcgmres_svecadd(dim_solution, update, solution);
   }
-  float delta = 1.0e-05;
+  float delta = 1.0e-02;
   float err_norm 
       = s_inexact_newton_for_zero_horizon_ocp_get_error_norm(&newton, 
                                                              current_time, 

@@ -12,6 +12,7 @@ extern "C" {
 class s_linear_algebra_test: public ::testing::Test {
 protected:
   virtual void SetUp() {
+    srand(time(NULL));
     dim = 50;
     x = allocate_svec(dim);
     x_ref = allocate_svec(dim);
@@ -50,7 +51,9 @@ TEST_F(s_linear_algebra_test, svecset) {
 
 
 TEST_F(s_linear_algebra_test, sveccp) {
-  hpcgmres_svecset(dim, a, x);
+  for (int i=0; i<dim; ++i) {
+    x[i] = (float)rand()/RAND_MAX;
+  }
   for (int i=0; i<dim; ++i) {
     y_ref[i] = x[i];
   }
@@ -62,7 +65,9 @@ TEST_F(s_linear_algebra_test, sveccp) {
 
 
 TEST_F(s_linear_algebra_test, svecmcp) {
-  hpcgmres_svecset(dim, a, x);
+  for (int i=0; i<dim; ++i) {
+    x_ref[i] = (float)rand()/RAND_MAX;
+  }
   for (int i=0; i<dim; ++i) {
     y_ref[i] = b*x[i];
   }
@@ -74,8 +79,12 @@ TEST_F(s_linear_algebra_test, svecmcp) {
 
 
 TEST_F(s_linear_algebra_test, svecdot) {
-  hpcgmres_svecset(dim, a, x);
-  hpcgmres_svecset(dim, b, y);
+  for (int i=0; i<dim; ++i) {
+    x[i] = (float)rand()/RAND_MAX;
+  }
+  for (int i=0; i<dim; ++i) {
+    y[i] = (float)rand()/RAND_MAX;
+  }
   float dot_ref = 0;
   for (int i=0; i<dim; ++i) {
     dot_ref += x[i] * y[i];
@@ -86,7 +95,9 @@ TEST_F(s_linear_algebra_test, svecdot) {
 
 
 TEST_F(s_linear_algebra_test, svecnrm2) {
-  hpcgmres_svecset(dim, a, x);
+  for (int i=0; i<dim; ++i) {
+    x[i] = (float)rand()/RAND_MAX;
+  }
   float nrm_ref = 0;
   for (int i=0; i<dim; ++i) {
     nrm_ref += x[i] * x[i];
@@ -97,7 +108,9 @@ TEST_F(s_linear_algebra_test, svecnrm2) {
 
 
 TEST_F(s_linear_algebra_test, svecmul) {
-  hpcgmres_svecset(dim, a, x);
+  for (int i=0; i<dim; ++i) {
+    x[i] = (float)rand()/RAND_MAX;
+  }
   for (int i=0; i<dim; ++i) {
     x_ref[i] = b * x[i];
   }
@@ -109,8 +122,12 @@ TEST_F(s_linear_algebra_test, svecmul) {
 
 
 TEST_F(s_linear_algebra_test, svecadd) {
-  hpcgmres_svecset(dim, a, x);
-  hpcgmres_svecset(dim, b, y);
+  for (int i=0; i<dim; ++i) {
+    x[i] = (float)rand()/RAND_MAX;
+  }
+  for (int i=0; i<dim; ++i) {
+    y[i] = (float)rand()/RAND_MAX;
+  }
   for (int i=0; i<dim; ++i) {
     y_ref[i] = x[i] + y[i];
   }
@@ -122,8 +139,12 @@ TEST_F(s_linear_algebra_test, svecadd) {
 
 
 TEST_F(s_linear_algebra_test, svecmadd) {
-  hpcgmres_svecset(dim, a, x);
-  hpcgmres_svecset(dim, b, y);
+  for (int i=0; i<dim; ++i) {
+    x[i] = (float)rand()/RAND_MAX;
+  }
+  for (int i=0; i<dim; ++i) {
+    y[i] = (float)rand()/RAND_MAX;
+  }
   for (int i=0; i<dim; ++i) {
     y_ref[i] = a*x[i] + y[i];
   }
@@ -135,8 +156,12 @@ TEST_F(s_linear_algebra_test, svecmadd) {
 
 
 TEST_F(s_linear_algebra_test, saxpy) {
-  hpcgmres_svecset(dim, a, x);
-  hpcgmres_svecset(dim, b, y);
+  for (int i=0; i<dim; ++i) {
+    x[i] = (float)rand()/RAND_MAX;
+  }
+  for (int i=0; i<dim; ++i) {
+    y[i] = (float)rand()/RAND_MAX;
+  }
   for (int i=0; i<dim; ++i) {
     res_ref[i] = a*x[i] + y[i];
   }
@@ -148,8 +173,12 @@ TEST_F(s_linear_algebra_test, saxpy) {
 
 
 TEST_F(s_linear_algebra_test, saxpby) {
-  hpcgmres_svecset(dim, a, x);
-  hpcgmres_svecset(dim, b, y);
+  for (int i=0; i<dim; ++i) {
+    x[i] = (float)rand()/RAND_MAX;
+  }
+  for (int i=0; i<dim; ++i) {
+    y[i] = (float)rand()/RAND_MAX;
+  }
   for (int i=0; i<dim; ++i) {
     res_ref[i] = a*x[i] + b*y[i];
   }

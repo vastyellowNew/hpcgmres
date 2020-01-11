@@ -13,6 +13,7 @@ extern "C" {
 class d_time_varying_smooth_horizon_test : public ::testing::Test {
 protected:
   virtual void SetUp() {
+    srand(time(NULL));
     T_f = (double)rand()/RAND_MAX;
     alpha = (double)rand()/RAND_MAX;
     initial_time = (double)rand()/RAND_MAX;

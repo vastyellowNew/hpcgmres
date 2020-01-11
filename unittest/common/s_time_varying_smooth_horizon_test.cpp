@@ -14,6 +14,7 @@ extern "C" {
 class s_time_varying_smooth_horizon_test : public ::testing::Test {
 protected:
   virtual void SetUp() {
+    srand(time(NULL));
     T_f = (float)rand()/RAND_MAX;
     alpha = (float)rand()/RAND_MAX;
     initial_time = (float)rand()/RAND_MAX;

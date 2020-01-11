@@ -14,6 +14,7 @@ extern "C" {
 class d_zero_horizon_ocp_test : public ::testing::Test {
 protected:
   virtual void SetUp() {
+    srand(time(NULL));
     d_zero_horizon_ocp_create(&ocp);
   }
 

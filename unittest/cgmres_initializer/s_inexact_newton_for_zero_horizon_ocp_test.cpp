@@ -16,6 +16,7 @@ extern "C" {
 class s_inexact_newton_for_zero_horizon_ocp_test : public ::testing::Test {
 protected:
   virtual void SetUp() {
+    srand(time(NULL));
     finite_diff = 1.0e-08;
     s_inexact_newton_for_zero_horizon_ocp_create(&newton, finite_diff);
     dimx = s_inexact_newton_for_zero_horizon_ocp_dimx();

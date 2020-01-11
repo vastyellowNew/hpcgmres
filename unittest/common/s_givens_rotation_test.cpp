@@ -12,6 +12,7 @@ extern "C" {
 class s_givens_rotation_test : public ::testing::Test {
 protected:
   virtual void SetUp() {
+    srand(time(NULL));
     dim = 50;
   }
 

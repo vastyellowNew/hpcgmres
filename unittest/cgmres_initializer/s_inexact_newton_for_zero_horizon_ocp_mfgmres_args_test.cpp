@@ -14,6 +14,7 @@ extern "C" {
 class s_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test : public ::testing::Test {
 protected:
   virtual void SetUp() {
+    srand(time(NULL));
     dim = 50;
     state = allocate_svec(dim);
     state_ref = allocate_svec(dim);
