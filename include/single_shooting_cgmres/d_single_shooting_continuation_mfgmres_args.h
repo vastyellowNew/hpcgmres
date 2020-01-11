@@ -2,9 +2,6 @@
 #define HPCGMRES_D_SINGLE_SHOOTING_CONTINUATION_MFGMRES_ARGS_H_
 
 
-#include <blasfeo.h>
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -12,8 +9,8 @@ extern "C" {
 
 struct d_single_shooting_continuation_mfgmres_args {
   double current_time;
-  struct blasfeo_dvec *current_state_ptr;
-  struct blasfeo_dvec *current_solution_ptr;
+  double *current_state_ptr;
+  double *current_solution_ptr;
 };
 
 

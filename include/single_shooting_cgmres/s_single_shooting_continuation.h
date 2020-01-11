@@ -2,8 +2,6 @@
 #define HPCGMRES_S_SINGLE_SHOOTING_CONTINUATION_H_
 
 
-#include <blasfeo.h>
-
 #include "s_single_shooting_ocp.h"
 #include "s_single_shooting_continuation_mfgmres_args.h"
 
@@ -14,12 +12,12 @@ extern "C" {
 
 
 struct s_single_shooting_continuation {
-  struct s_single_shooting_ocp *ocp;
-  struct blasfeo_svec *incremented_state;
-  struct blasfeo_svec *incremented_solution;
-  struct blasfeo_svec *optimality_residual;
-  struct blasfeo_svec *optimality_residual1;
-  struct blasfeo_svec *optimality_residual2;
+  struct s_single_shooting_ocp ocp;
+  float *incremented_state;
+  float *incremented_solution;
+  float *optimality_residual;
+  float *optimality_residual1;
+  float *optimality_residual2;
   float finite_difference_increment; 
   float zeta;
   float incremented_time;
@@ -33,31 +31,33 @@ struct s_single_shooting_continuation {
 
 int s_single_shooting_continuation_strsize();
 
-int s_single_shooting_continuation_memsize(
-    struct s_single_shooting_continuation *continuation, int N);
+int s_single_shooting_continuation_memsize(int N);
 
 void s_single_shooting_continuation_create(
     struct s_single_shooting_continuation *continuation, float T_f, 
     float alpha, float initial_time, int N, 
-    float finite_difference_increment, float zeta, void *memory);
+    float finite_difference_increment, float zeta);
+
+void s_single_shooting_continuation_delete(
+    struct s_single_shooting_continuation *continuation);
 
 void s_single_shooting_continuation_integrate_solution(
-    struct s_single_shooting_ocp *ocp, struct blasfeo_svec *solution,
-    struct blasfeo_svec *solution_update_vec, float integration_length);
+    struct s_single_shooting_continuation *continuation, float *solution,
+    float *solution_update, float integration_length);
 
 void s_single_shooting_continuation_compute_b(
     struct s_single_shooting_continuation *continuation, 
     struct s_single_shooting_continuation_mfgmres_args *args, 
-    struct blasfeo_svec *direction, struct blasfeo_svec *b);
+    float *direction, float *b);
 
 void s_single_shooting_continuation_compute_ax(
     struct s_single_shooting_continuation *continuation, 
     struct s_single_shooting_continuation_mfgmres_args *args, 
-    struct blasfeo_svec *direction, struct blasfeo_svec *ax);
+    float *direction, float *ax);
 
 float s_single_shooting_continuation_get_error_norm(
     struct s_single_shooting_continuation *continuation, float current_time, 
-    struct blasfeo_svec *current_state, struct blasfeo_svec *current_solution);
+    float *current_state, float *current_solution);
 
 void s_single_shooting_continuation_reset_horizon_length(
     struct s_single_shooting_continuation *continuation, float initial_time);

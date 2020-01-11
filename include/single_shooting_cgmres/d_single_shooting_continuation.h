@@ -12,7 +12,7 @@ extern "C" {
 
 
 struct d_single_shooting_continuation {
-  struct d_single_shooting_ocp *ocp;
+  struct d_single_shooting_ocp ocp;
   double *incremented_state;
   double *incremented_solution;
   double *optimality_residual;
@@ -31,13 +31,15 @@ struct d_single_shooting_continuation {
 
 int d_single_shooting_continuation_strsize();
 
-int d_single_shooting_continuation_memsize(
-    struct d_single_shooting_continuation *continuation, int N);
+int d_single_shooting_continuation_memsize(int N);
 
 void d_single_shooting_continuation_create(
     struct d_single_shooting_continuation *continuation, double T_f, 
     double alpha, double initial_time, int N, 
     double finite_difference_increment, double zeta);
+
+void d_single_shooting_continuation_delete(
+    struct d_single_shooting_continuation *continuation);
 
 void d_single_shooting_continuation_integrate_solution(
     struct d_single_shooting_continuation *continuation, double *solution,

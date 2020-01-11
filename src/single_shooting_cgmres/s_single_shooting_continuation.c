@@ -1,38 +1,44 @@
 #include <stdlib.h>
-#include <stdio.h>
-#include <cmath.h>
-
-#include <blasfeo.h>
+#include <math.h>
 
 #include "s_single_shooting_continuation.h"
+#include "s_single_shooting_ocp.h"
+#include "s_linear_algebra.h"
+#include "s_memory_manager.h"
 
 
 #define REAL float
 
-#define SINGLE_SHOOTING_CONTINUATION s_single_shooting_continuation
 #define SINGLE_SHOOTING_CONTINUATION_STRSIZE s_single_shooting_continuation_strsize
 #define SINGLE_SHOOTING_CONTINUATION_MEMSIZE s_single_shooting_continuation_memsize
 #define SINGLE_SHOOTING_CONTINUATION_CREATE s_single_shooting_continuation_create
+#define SINGLE_SHOOTING_CONTINUATION_DELETE s_single_shooting_continuation_delete
 #define SINGLE_SHOOTING_CONTINUATION_INTEGRATE_SOLUTION s_single_shooting_continuation_integrate_solution
 #define SINGLE_SHOOTING_CONTINUATION_COMPUTE_B s_single_shooting_continuation_compute_b
 #define SINGLE_SHOOTING_CONTINUATION_COMPUTE_AX s_single_shooting_continuation_compute_ax
 #define SINGLE_SHOOTING_CONTINUATION_GET_ERROR_NORM s_single_shooting_continuation_get_error_norm
 #define SINGLE_SHOOTING_CONTINUATION_RESET_HORIZON_LENGTH s_single_shooting_continuation_reset_horizon_length
 
+#define SINGLE_SHOOTING_CONTINUATION_MFGMRES_ARGS s_single_shooting_continuation_mfgmres_args
+#define SINGLE_SHOOTING_CONTINUATION s_single_shooting_continuation
+
 #define SINGLE_SHOOTING_OCP_MEMSIZE s_single_shooting_ocp_memsize
 #define SINGLE_SHOOTING_OCP_CREATE s_single_shooting_ocp_create
+#define SINGLE_SHOOTING_OCP_DELETE s_single_shooting_ocp_delete
 #define SINGLE_SHOOTING_OCP_COMPUTE_OPTIMALITY_RESIDUAL s_single_shooting_ocp_compute_optimality_residual
 #define SINGLE_SHOOTING_OCP_PREDICT_STATE_FROM_SOLUTION s_single_shooting_ocp_predict_state_from_solution
+#define SINGLE_SHOOTING_OCP_RESET_HORIZON_LENGTH s_single_shooting_ocp_reset_horizon_length
+#define SINGLE_SHOOTING_OCP_DIMX s_single_shooting_ocp_dimx
+#define SINGLE_SHOOTING_OCP_DIMU s_single_shooting_ocp_dimu
+#define SINGLE_SHOOTING_OCP_DIMC s_single_shooting_ocp_dimc
 
-#define STRVEC blasfeo_svec
-#define SIZE_STRVEC blasfeo_memsize_svec
-#define CREATE_STRVEC blasfeo_memsize_svec
+#define VECMAD hpcgmres_svecmadd
+#define AXPY hpcgmres_saxpy
+#define AXPBY hpcgmres_saxpby
+#define VECNRM2 hpcgmres_svecnrm2
 
-#define VECCSE blasfeo_svecse
-#define VECAD blasfeo_svecad
-#define VECDOT blasfeo_sdot
-#define AXPY blasfeo_saxpy
-#define AXBPY blasfeo_saxbpy
+#define ALLOCATE_VEC allocate_svec
+#define FREE_VEC free_svec
 
 
 #include "x_single_shooting_continuation.c"
