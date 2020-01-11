@@ -1,0 +1,69 @@
+add_executable(
+    d_single_shooting_ocp_test 
+    d_single_shooting_ocp_test.cpp
+    ${SRC_DIR}/single_shooting_cgmres/d_single_shooting_ocp.c
+    ${NMPC_MODEL_DIR}/d_nmpc_model.c
+    ${SRC_DIR}/common/d_memory_manager.c
+    ${SRC_DIR}/common/d_linear_algebra.c
+    ${SRC_DIR}/common/d_time_varying_smooth_horizon.c
+)
+target_include_directories(
+    d_single_shooting_ocp_test 
+    PUBLIC
+    ${BLASFEO_INCLUDE_PATH}
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/single_shooting_cgmres
+    ${INCLUDE_DIR}/common
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    d_single_shooting_ocp_test 
+    PUBLIC
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    d_single_shooting_ocp_test 
+    googletest
+)
+add_test(
+    NAME d_single_shooting_ocp_test
+    COMMAND $<TARGET_FILE:d_single_shooting_ocp_test>
+)
+
+add_executable(
+    s_single_shooting_ocp_test 
+    s_single_shooting_ocp_test.cpp
+    ${SRC_DIR}/single_shooting_cgmres/s_single_shooting_ocp.c
+    ${NMPC_MODEL_DIR}/s_nmpc_model.c
+    ${SRC_DIR}/common/s_memory_manager.c
+    ${SRC_DIR}/common/s_linear_algebra.c
+    ${SRC_DIR}/common/s_time_varying_smooth_horizon.c
+)
+target_include_directories(
+    s_single_shooting_ocp_test 
+    PUBLIC
+    ${BLASFEO_INCLUDE_PATH}
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/single_shooting_cgmres
+    ${INCLUDE_DIR}/common
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    s_single_shooting_ocp_test 
+    PUBLIC
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    s_single_shooting_ocp_test 
+    googletest
+)
+add_test(
+    NAME s_single_shooting_ocp_test
+    COMMAND $<TARGET_FILE:s_single_shooting_ocp_test>
+)

@@ -2,8 +2,6 @@
 #define HPCGMRES_D_SINGLE_SHOOTING_CONTINUATION_H_
 
 
-#include <blasfeo.h>
-
 #include "d_single_shooting_ocp.h"
 #include "d_single_shooting_continuation_mfgmres_args.h"
 
@@ -15,11 +13,11 @@ extern "C" {
 
 struct d_single_shooting_continuation {
   struct d_single_shooting_ocp *ocp;
-  struct blasfeo_dvec *incremented_state;
-  struct blasfeo_dvec *incremented_solution;
-  struct blasfeo_dvec *optimality_residual;
-  struct blasfeo_dvec *optimality_residual1;
-  struct blasfeo_dvec *optimality_residual2;
+  double *incremented_state;
+  double *incremented_solution;
+  double *optimality_residual;
+  double *optimality_residual1;
+  double *optimality_residual2;
   double finite_difference_increment; 
   double zeta;
   double incremented_time;
@@ -39,25 +37,25 @@ int d_single_shooting_continuation_memsize(
 void d_single_shooting_continuation_create(
     struct d_single_shooting_continuation *continuation, double T_f, 
     double alpha, double initial_time, int N, 
-    double finite_difference_increment, double zeta, void *memory);
+    double finite_difference_increment, double zeta);
 
 void d_single_shooting_continuation_integrate_solution(
-    struct d_single_shooting_ocp *ocp, struct blasfeo_dvec *solution,
-    struct blasfeo_dvec *solution_update_vec, double integration_length);
+    struct d_single_shooting_continuation *continuation, double *solution,
+    double *solution_update, double integration_length);
 
 void d_single_shooting_continuation_compute_b(
     struct d_single_shooting_continuation *continuation, 
     struct d_single_shooting_continuation_mfgmres_args *args, 
-    struct blasfeo_dvec *direction, struct blasfeo_dvec *b);
+    double *direction, double *b);
 
 void d_single_shooting_continuation_compute_ax(
     struct d_single_shooting_continuation *continuation, 
     struct d_single_shooting_continuation_mfgmres_args *args, 
-    struct blasfeo_dvec *direction, struct blasfeo_dvec *ax);
+    double *direction, double *ax);
 
 double d_single_shooting_continuation_get_error_norm(
     struct d_single_shooting_continuation *continuation, double current_time, 
-    struct blasfeo_dvec *current_state, struct blasfeo_dvec *current_solution);
+    double *current_state, double *current_solution);
 
 void d_single_shooting_continuation_reset_horizon_length(
     struct d_single_shooting_continuation *continuation, double initial_time);

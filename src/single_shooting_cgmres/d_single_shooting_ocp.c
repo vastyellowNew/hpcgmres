@@ -1,35 +1,44 @@
-#include <stdlib.h>
-#include <stdio.h>
-
-#include <blasfeo.h>
-
 #include "d_single_shooting_ocp.h"
+#include "d_nmpc_model.h"
+#include "d_time_varying_smooth_horizon.h"
+#include "d_linear_algebra.h"
+#include "d_memory_manager.h"
 
 
 #define REAL double
 
-#define SINGLE_SHOOTING_OCP d_single_shooting_ocp
 #define SINGLE_SHOOTING_OCP_STRSIZE d_single_shooting_ocp_strsize
 #define SINGLE_SHOOTING_OCP_MEMSIZE d_single_shooting_ocp_memsize
 #define SINGLE_SHOOTING_OCP_CREATE d_single_shooting_ocp_create
+#define SINGLE_SHOOTING_OCP_DELETE d_single_shooting_ocp_delete
 #define SINGLE_SHOOTING_OCP_COMPUTE_OPTIMALITY_RESIDUAL d_single_shooting_ocp_compute_optimality_residual
 #define SINGLE_SHOOTING_OCP_PREDICT_STATE_FROM_SOLUTION d_single_shooting_ocp_predict_state_from_solution
+#define SINGLE_SHOOTING_OCP_RESET_HORIZON_LENGTH d_single_shooting_ocp_reset_horizon_length
+#define SINGLE_SHOOTING_OCP_DIMX d_single_shooting_ocp_dimx
+#define SINGLE_SHOOTING_OCP_DIMU d_single_shooting_ocp_dimu
+#define SINGLE_SHOOTING_OCP_DIMC d_single_shooting_ocp_dimc
+#define SINGLE_SHOOTING_OCP d_single_shooting_ocp
 
+#define NMPC_MODEL_CREATE d_nmpc_model_create
 #define NMPC_MODEL_F d_nmpc_model_f
 #define NMPC_MODEL_PHIX d_nmpc_model_phix
 #define NMPC_MODEL_HX d_nmpc_model_hx
 #define NMPC_MODEL_HU d_nmpc_model_hu
+#define NMPC_MODEL_DIMX d_nmpc_model_dimx
+#define NMPC_MODEL_DIMU d_nmpc_model_dimu
+#define NMPC_MODEL_DIMC d_nmpc_model_dimc
+#define NMPC_MODEL d_nmpc_model
 
 #define TIME_VARYING_SMOOTH_HORIZON_CREATE d_time_varying_smooth_horizon_create
 #define TIME_VARYING_SMOOTH_HORIZON_GET_LENGTH d_time_varying_smooth_horizon_get_length
 #define TIME_VARYING_SMOOTH_HORIZON_RESET_LENGTH d_time_varying_smooth_horizon_reset_length
 
-#define STRVEC blasfeo_dvec
-#define SIZE_STRVEC blasfeo_memsize_dvec
-#define CREATE_STRVEC blasfeo_memsize_dvec
+#define ALLOCATE_MAT allocate_dmat
+#define ALLOCATE_VEC allocate_dvec
+#define FREE_MAT free_dmat
+#define FREE_VEC free_dvec
 
-#define VECCSE blasfeo_dvecse
-#define AXPY blasfeo_daxpy
+#define AXPY hpcgmres_daxpy 
 
 
 #include "x_single_shooting_ocp.c"

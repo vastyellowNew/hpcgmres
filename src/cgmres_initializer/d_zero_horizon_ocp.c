@@ -18,7 +18,6 @@
 #define ALLOCATE_VEC allocate_dvec
 #define FREE_VEC free_dvec
 
-#define NMPC_MODEL_STRSIZE d_nmpc_model_strsize
 #define NMPC_MODEL_CREATE d_nmpc_model_create
 #define NMPC_MODEL_PHIX d_nmpc_model_phix
 #define NMPC_MODEL_HU d_nmpc_model_hu
