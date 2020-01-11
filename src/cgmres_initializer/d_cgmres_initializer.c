@@ -6,7 +6,6 @@
 #include "d_linear_algebra.h"
 
 
-#define DOUBLE_PRECISION
 #define REAL double
 
 #define CGMRES_INITIALIZER_STRSIZE d_cgmres_initializer_strsize
