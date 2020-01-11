@@ -190,3 +190,151 @@ add_test(
     NAME s_inexact_newton_for_zero_horizon_ocp_test
     COMMAND $<TARGET_FILE:s_inexact_newton_for_zero_horizon_ocp_test>
 )
+
+
+add_executable(
+    d_mfgmres_for_cgmres_initializer_test
+    d_mfgmres_for_cgmres_initializer_test.cpp
+    ${SRC_DIR}/cgmres_initializer/d_mfgmres_for_cgmres_initializer.c
+    ${SRC_DIR}/cgmres_initializer/d_inexact_newton_for_zero_horizon_ocp.c
+    ${SRC_DIR}/cgmres_initializer/d_zero_horizon_ocp.c
+    ${NMPC_MODEL_DIR}/d_nmpc_model.c
+    ${SRC_DIR}/common/d_memory_manager.c
+    ${SRC_DIR}/common/d_linear_algebra.c
+    ${SRC_DIR}/common/d_givens_rotation.c
+)
+target_include_directories(
+    d_mfgmres_for_cgmres_initializer_test
+    PUBLIC
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    d_mfgmres_for_cgmres_initializer_test
+    PUBLIC
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    d_mfgmres_for_cgmres_initializer_test
+    googletest
+)
+add_test(
+    NAME d_mfgmres_for_cgmres_initializer_test
+    COMMAND $<TARGET_FILE:d_mfgmres_for_cgmres_initializer_test>
+)
+
+add_executable(
+    s_mfgmres_for_cgmres_initializer_test
+    s_mfgmres_for_cgmres_initializer_test.cpp
+    ${SRC_DIR}/cgmres_initializer/s_mfgmres_for_cgmres_initializer.c
+    ${SRC_DIR}/cgmres_initializer/s_inexact_newton_for_zero_horizon_ocp.c
+    ${SRC_DIR}/cgmres_initializer/s_zero_horizon_ocp.c
+    ${NMPC_MODEL_DIR}/s_nmpc_model.c
+    ${SRC_DIR}/common/s_memory_manager.c
+    ${SRC_DIR}/common/s_linear_algebra.c
+    ${SRC_DIR}/common/s_givens_rotation.c
+)
+target_include_directories(
+    s_mfgmres_for_cgmres_initializer_test
+    PUBLIC
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    s_mfgmres_for_cgmres_initializer_test
+    PUBLIC
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    s_mfgmres_for_cgmres_initializer_test
+    googletest
+)
+add_test(
+    NAME s_mfgmres_for_cgmres_initializer_test
+    COMMAND $<TARGET_FILE:s_mfgmres_for_cgmres_initializer_test>
+)
+
+
+add_executable(
+    d_cgmres_initializer_test
+    d_cgmres_initializer_test.cpp
+    ${SRC_DIR}/cgmres_initializer/d_cgmres_initializer.c
+    ${SRC_DIR}/cgmres_initializer/d_mfgmres_for_cgmres_initializer.c
+    ${SRC_DIR}/cgmres_initializer/d_inexact_newton_for_zero_horizon_ocp.c
+    ${SRC_DIR}/cgmres_initializer/d_zero_horizon_ocp.c
+    ${NMPC_MODEL_DIR}/d_nmpc_model.c
+    ${SRC_DIR}/common/d_memory_manager.c
+    ${SRC_DIR}/common/d_linear_algebra.c
+    ${SRC_DIR}/common/d_givens_rotation.c
+)
+target_include_directories(
+    d_cgmres_initializer_test
+    PUBLIC
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    d_cgmres_initializer_test
+    PUBLIC
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    d_cgmres_initializer_test
+    googletest
+)
+add_test(
+    NAME d_cgmres_initializer_test
+    COMMAND $<TARGET_FILE:d_cgmres_initializer_test>
+)
+
+add_executable(
+    s_cgmres_initializer_test
+    s_cgmres_initializer_test.cpp
+    ${SRC_DIR}/cgmres_initializer/s_cgmres_initializer.c
+    ${SRC_DIR}/cgmres_initializer/s_mfgmres_for_cgmres_initializer.c
+    ${SRC_DIR}/cgmres_initializer/s_inexact_newton_for_zero_horizon_ocp.c
+    ${SRC_DIR}/cgmres_initializer/s_zero_horizon_ocp.c
+    ${NMPC_MODEL_DIR}/s_nmpc_model.c
+    ${SRC_DIR}/common/s_memory_manager.c
+    ${SRC_DIR}/common/s_linear_algebra.c
+    ${SRC_DIR}/common/s_givens_rotation.c
+)
+target_include_directories(
+    s_cgmres_initializer_test
+    PUBLIC
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    s_cgmres_initializer_test
+    PUBLIC
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    s_cgmres_initializer_test
+    googletest
+)
+add_test(
+    NAME s_cgmres_initializer_test
+    COMMAND $<TARGET_FILE:s_cgmres_initializer_test>
+)

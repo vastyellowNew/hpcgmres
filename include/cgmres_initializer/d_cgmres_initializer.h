@@ -2,11 +2,9 @@
 #define HPCGMRES_D_CGMRES_INITIALIZER_H_
 
 
-#include <blasfeo.h>
-
+#include "d_mfgmres_for_cgmres_initializer.h"
 #include "d_inexact_newton_for_zero_horizon_ocp.h"
 #include "d_inexact_newton_for_zero_horizon_ocp_mfgmres_args.h"
-#include "d_mfgmres_for_cgmres_initializer.h"
 
 
 #ifdef __cplusplus
@@ -15,11 +13,11 @@ extern "C" {
 
 
 struct d_cgmres_initializer {
-  struct d_inexact_newton_for_zero_horizon_ocp *newton;
-  struct d_inexact_newton_for_zero_horizon_ocp_mfgmres_args *mfgmres_args;
-  struct d_mfgmres_for_cgmres_initializer *mfgmres;
-  struct blasfeo_dvec *initial_guess_solution; 
-  struct blasfeo_dvec *solution_update;
+  struct d_mfgmres_for_cgmres_initializer mfgmres;
+  struct d_inexact_newton_for_zero_horizon_ocp newton;
+  struct d_inexact_newton_for_zero_horizon_ocp_mfgmres_args mfgmres_args;
+  double *initial_guess_solution; 
+  double *solution_update;
   double newton_residual_tolerance;
   int max_newton_iteration;
   int dim_solution;
@@ -28,28 +26,27 @@ struct d_cgmres_initializer {
 
 int d_cgmres_initializer_strsize();
 
-int d_cgmres_initializer_memsize(struct d_cgmres_initializer *initializer);
+int d_cgmres_initializer_memsize(int kmax);
 
 void d_cgmres_initializer_create(struct d_cgmres_initializer *initializer, 
-                                 double finite_difference_increment, int kmax,
-                                 void *memory);
+                                 double finite_difference_increment, int kmax);
+
+void d_cgmres_initializer_delete(struct d_cgmres_initializer *initializer);
 
 void d_cgmres_initializer_set_termination_criterions(
     struct d_cgmres_initializer *initializer, 
     double newton_residual_tolerance, int max_newton_iteration);
 
 void d_cgmres_initializer_set_initial_guess_solution(
-    struct d_cgmres_initializer *initializer, 
-    struct blasfeo_dvec *initial_guess_solution);
+    struct d_cgmres_initializer *initializer, double *initial_guess_solution);
 
 void d_cgmres_initializer_compute_initial_solution(
     struct d_cgmres_initializer *initializer, double initial_time, 
-    struct blasfeo_dvec *initial_state, struct blasfeo_dvec *initial_solution);
+    double *initial_state, double *initial_solution);
 
 void d_cgmres_initializer_get_terminal_cost_derivative(
     struct d_cgmres_initializer *initializer, double initial_time, 
-    struct blasfeo_dvec *initial_state, 
-    struct blasfeo_dvec *terminal_cost_derivative);
+    double *initial_state, double *terminal_cost_derivative);
 
 
 #ifdef __cplusplus

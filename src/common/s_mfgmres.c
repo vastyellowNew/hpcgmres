@@ -1,36 +1,29 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include <float.h>
 
-#include <blasfeo.h>
-
-#include "s_mfgmres.h"
+#include "s_memory_manager.h"
+#include "s_linear_algebra.h"
+#include "s_givens_rotation.h"
 
 
 #define REAL float
 #define MACHINE_EPSILON FLT_EPSILON
 
-#define MFGMRES_GIVENS_ROTATION_MAT s_mfgmres_givens_rotation_mat
-#define MFGMRES_GIVENS_ROTATION_VEC s_mfgmres_givens_rotation_vec
+#define APPLY_GIVENS_ROTATION s_apply_givens_rotation
 
-#define STRVEC blasfeo_svec
-#define STRMAT blasfeo_smat
-#define SIZE_STRMAT blasfeo_memsize_smat
-#define SIZE_STRVEC blasfeo_memsize_svec
-#define CREATE_STRMAT blasfeo_memsize_smat
-#define CREATE_STRVEC blasfeo_memsize_svec
+#define ALLOCATE_MAT allocate_smat
+#define ALLOCATE_VEC allocate_svec
+#define FREE_MAT free_smat
+#define FREE_VEC free_svec
 
-#define VECIN1 blasfeo_svecin1
-#define VECEX1 blasfeo_svecex1
-#define VECCSE blasfeo_svecse
-#define MATIN1 blasfeo_sgein1 
-#define MATEX1 blasfeo_sgeex1
-#define MATCSE blasfeo_sgese
-#define VECSC blasfeo_svecsc
-#define VECCAD blasfeo_saxpby
-#define VECCPSC blasfeo_sveccpsc
-#define VECDOT blasfeo_sdot
-#define TRSV_UNN blasfeo_strsv_unn
+#define VECSET hpcgmres_svecset
+#define VECNRM2 hpcgmres_svecnrm2
+#define VECMCP hpcgmres_svecmcp
+#define VECDOT hpcgmres_svecdot
+#define VECMAD hpcgmres_svecmadd
+#define VECMUL hpcgmres_svecmul
 
 
 #include "x_mfgmres.c"

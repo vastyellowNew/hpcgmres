@@ -36,7 +36,7 @@ void MFGMRES_CREATE(struct MFGMRES *mfgmres, int dim_linear_problem, int kmax) {
   else {
     mfgmres->kmax = kmax;
   }
-  mfgmres->memsize = MFGMRES_MEMSIZE();
+  mfgmres->memsize = MFGMRES_MEMSIZE(dim_linear_problem, kmax);
 }
 
 
@@ -62,14 +62,15 @@ void MFGMRES_SOLVE_LINEAR_PROBLEM(
   LINEAR_PROBLEM_COMPUTE_B(linear_problem, linear_problem_args, solution, 
                            mfgmres->b_vec);
   mfgmres->g_vec[0] = sqrt(VECNRM2(dim_linear_problem, mfgmres->b_vec));
-  VECMCP(dim_linear_problem, 1/mfgmres->g_vec[0], mfgmres->b_vec, basis_mat[0]);
+  VECMCP(dim_linear_problem, 1/mfgmres->g_vec[0], mfgmres->b_vec, 
+         mfgmres->basis_mat[0]);
 
   // kk : the dimension of the Krylov subspace at the current iteration.
   int kk, jj;
   REAL nu;
   for (kk=0; kk<kmax; ++kk) {
     LINEAR_PROBLEM_COMPUTE_AX(linear_problem, linear_problem_args, 
-                              basis_mat[kk], basis_mat[kk+1]);
+                              mfgmres->basis_mat[kk], mfgmres->basis_mat[kk+1]);
     for (jj=0; jj<=kk; ++jj) {
       mfgmres->hessenberg_mat[kk][jj] = VECDOT(dim_linear_problem,  
                                                mfgmres->basis_mat[kk+1], 
@@ -79,19 +80,18 @@ void MFGMRES_SOLVE_LINEAR_PROBLEM(
     }
     mfgmres->hessenberg_mat[kk][kk+1] = sqrt(VECNRM2(dim_linear_problem, 
                                                      mfgmres->basis_mat[kk+1]));
-    if (abs(mfgmres->hessenberg_mat[kk][kk+1])) < MACHINE_EPSILON)) {
+    if (fabs(mfgmres->hessenberg_mat[kk][kk+1]) < MACHINE_EPSILON) {
 #if defined(RUNTIME_CHECKS)
       pinrtf("The modified Gram-Schmidt breakdown at k = %d.\n", k);
 #endif
       break;
     }
-    // basis_mat[k+1] = basis_mat[k+1] / hessenberg_mat[k][k+1];
     VECMUL(dim_linear_problem, 1/mfgmres->hessenberg_mat[kk][kk+1], 
            mfgmres->basis_mat[kk+1]);
     // Givens Rotation for QR factrization of the least squares problem.
     for (jj=0; jj<kk; ++jj) {
-      MFGMRES_GIVENS_ROTATION(mfgmres->hessenberg_mat[kk], 
-                              mfgmres->givens_c_vec, mfgmres->givens_s_vec, jj);
+      APPLY_GIVENS_ROTATION(mfgmres->hessenberg_mat[kk], 
+                            mfgmres->givens_c_vec, mfgmres->givens_s_vec, jj);
     }
     nu = sqrt(mfgmres->hessenberg_mat[kk][kk]*mfgmres->hessenberg_mat[kk][kk]
               +mfgmres->hessenberg_mat[kk][kk+1]*mfgmres->hessenberg_mat[kk][kk+1]);
@@ -103,13 +103,13 @@ void MFGMRES_SOLVE_LINEAR_PROBLEM(
                                       - mfgmres->givens_s_vec[kk] 
                                           * mfgmres->hessenberg_mat[kk][kk+1];
     mfgmres->hessenberg_mat[kk][kk+1] = 0;
-    MFGMRES_GIVENS_ROTATION(mfgmres->g_vec, mfgmres->givens_c_vec, 
-                            mfgmres->givens_s_vec, kk);
+    APPLY_GIVENS_ROTATION(mfgmres->g_vec, mfgmres->givens_c_vec, 
+                          mfgmres->givens_s_vec, kk);
   }
   // Computes solution by solving hessenberg_mat * y = g_vec.
   int ii;
   REAL tmp;
-  for (ii=k-1: ii>=0; --ii) {
+  for (ii=kk-1; ii>=0; --ii) {
     tmp = mfgmres->g_vec[ii];
     for (jj=ii+1; jj<kk; ++jj) {
       tmp -= mfgmres->hessenberg_mat[jj][ii] * mfgmres->givens_c_vec[jj];
@@ -121,6 +121,6 @@ void MFGMRES_SOLVE_LINEAR_PROBLEM(
     for (jj=0; jj<kk; ++jj) {
       tmp += mfgmres->basis_mat[jj][ii] * mfgmres->givens_c_vec[jj];
     }
-    mfgmres->solution_vec[ii] += tmp;
+    solution[ii] += tmp;
   }
 }
