@@ -20,19 +20,10 @@ addons:
       - cmake
 
 before_install:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then pip install --user cpp-coveralls; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install pyenv; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then eval "$(pyenv init -)"; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then pyenv install 2.7.6; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then pyenv global 2.7.6; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then pyenv rehash; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then pip install cpp-coveralls; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then pyenv rehash; fi
+  - pip install --user cpp-coveralls
 
 script:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then ./configure --enable-gcov && make && make check; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then ./configure --enable-gcov && make && make check; fi
+  - ./configure --enable-gcov && make && make check
   - git clone https://github.com/giaf/blasfeo.git
   - cd blasfeo
   - make static_library -j $(nproc) TARGET=GENERIC
@@ -45,5 +36,4 @@ script:
   - ctest 
 
 after_success:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then coveralls --exclude lib --exclude tests --gcov-options '\-lp'; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then coveralls --exclude lib --exclude tests --gcov-options '\-lp'; fi
+  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
