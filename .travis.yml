@@ -28,7 +28,7 @@ addons:
 #   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install lcov; fi
 
 script:
-  - cd unittest
+  - cd tests
   - mkdir -p build  && cd build
   - cmake -DCODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ..
   - cmake --build . --config Debug -- -j $(nproc)

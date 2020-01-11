@@ -1,8 +1,17 @@
-#include "d_mfcgmres_for_single_shooting_cgmres.h"
+#include "d_mfgmres_for_single_shooting_cgmres.h"
 
 
-#define LINEAR_PROBLEM d_single_shooting_continuation
+#define MFGMRES_STRSIZE d_mfgmres_for_single_shooting_cgmres_strsize
+#define MFGMRES_MEMSIZE d_mfgmres_for_single_shooting_cgmres_memsize
+#define MFGMRES_CREATE d_mfgmres_for_single_shooting_cgmres_create
+#define MFGMRES_DELETE d_mfgmres_for_single_shooting_cgmres_delete
+#define MFGMRES_SOLVE_LINEAR_PROBLEM d_mfgmres_for_single_shooting_cgmres_solve_linear_problem
+#define MFGMRES d_mfgmres_for_single_shooting_cgmres
+
+#define LINEAR_PROBLEM_COMPUTE_AX d_single_shooting_continuation_compute_ax
+#define LINEAR_PROBLEM_COMPUTE_B d_single_shooting_continuation_compute_b
 #define LINEAR_PROBLEM_ARGS d_single_shooting_continuation_mfgmres_args
+#define LINEAR_PROBLEM d_single_shooting_continuation
 
 
 #include "../common/d_mfgmres.c"

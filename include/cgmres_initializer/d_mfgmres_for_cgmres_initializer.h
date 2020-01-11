@@ -23,6 +23,7 @@ struct d_mfgmres_for_cgmres_initializer {
   int memsize; // memory size in bytes
 };
 
+
 int d_mfgmres_for_cgmres_initializer_strsize();
 
 int d_mfgmres_for_cgmres_initializer_memsize(int dim_linear_problem, int kmax);
