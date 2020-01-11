@@ -18,22 +18,17 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - cmake
-
-before_install:
-  - pip install --user cpp-coveralls
+      - lcov
 
 script:
-  - ./configure --enable-gcov && make && make check
-  - git clone https://github.com/giaf/blasfeo.git
-  - cd blasfeo
-  - make static_library -j $(nproc) TARGET=GENERIC
-  - cd ..
   - cd unittest
-  - mkdir -p build 
-  - cd build
-  - cmake ..
-  - make
-  - ctest 
+  - mkdir -p build  && cd build
+  - cmake -DCODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ..
+  - cmake --build . --config Debug -- -j $(nproc)
+  - ctest -j $(nproc) --output-on-failure
 
-after_success:
-  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
+after_success: 
+  - lcov --directory . --capture --output-file coverage.info
+  - lcov --remove coverage.info '/usr/*' "${HOME}"'/.cache/*' --output-file coverage.info
+  - lcov --list coverage.info
+  - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
