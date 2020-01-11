@@ -2,8 +2,6 @@
 #define HPCGMRES_S_ZERO_HORIZON_OCP_H_
 
 
-#include <blasfeo.h>
-
 #include "s_nmpc_model.h"
 
 
@@ -14,7 +12,7 @@ extern "C" {
 
 struct s_zero_horizon_ocp {
   struct s_nmpc_model model;
-  struct blasfeo_svec *lmd_vec;
+  float *lmd_vec;
   int dimx;
   int dimu;
   int dimc;
@@ -23,23 +21,21 @@ struct s_zero_horizon_ocp {
   int memsize; // memory size in bytes
 };
 
-// returns the size of the strage
 int s_zero_horizon_ocp_strsize();
 
-// returns the size of the strage
 int s_zero_horizon_ocp_memsize();
 
-void s_zero_horizon_ocp_create(struct s_zero_horizon_ocp *ocp, void *memory);
+void s_zero_horizon_ocp_create(struct s_zero_horizon_ocp *ocp);
+
+void s_zero_horizon_ocp_delete(struct s_zero_horizon_ocp *ocp);
 
 void s_zero_horizon_ocp_compute_optimality_residual(
-    struct s_zero_horizon_ocp *ocp, float current_time, 
-    struct blasfeo_svec *current_state, struct blasfeo_svec *solution, 
-    struct blasfeo_svec *optimality_residual);
+    struct s_zero_horizon_ocp *ocp, float current_time, float *current_state, 
+    float *solution, float *optimality_residual);
 
 void s_zero_horizon_ocp_compute_terminal_cost_derivative(
-    struct s_zero_horizon_ocp *ocp, float current_time, 
-    struct blasfeo_svec *current_state, 
-    struct blasfeo_svec *terminal_cost_derivative);
+    struct s_zero_horizon_ocp *ocp, float current_time, float *current_state, 
+    float *terminal_cost_derivative);
 
 int s_zero_horizon_ocp_dimx();
 

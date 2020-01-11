@@ -2,8 +2,6 @@
 #define HPCGMRES_D_INEXACT_NEWTON_FOR_ZERO_HORIZON_COP_H_
 
 
-#include <blasfeo.h>
-
 #include "d_zero_horizon_ocp.h"
 #include "d_inexact_newton_for_zero_horizon_ocp_mfgmres_args.h"
 
@@ -15,9 +13,9 @@ extern "C" {
 
 struct d_inexact_newton_for_zero_horizon_ocp {
   struct d_zero_horizon_ocp ocp;
-  struct blasfeo_dvec *incremented_solution;
-  struct blasfeo_dvec *optimality_residual;
-  struct blasfeo_dvec *optimality_residual1;
+  double *incremented_solution;
+  double *optimality_residual;
+  double *optimality_residual1;
   double finite_difference_increment; 
   int dim_solution;
   int memsize; // memory size in bytes
@@ -29,26 +27,28 @@ int d_inexact_newton_for_zero_horizon_ocp_memsize();
 
 void d_inexact_newton_for_zero_horizon_ocp_create(
     struct d_inexact_newton_for_zero_horizon_ocp *newton, 
-    double finite_difference_increment, void *memory);
+    double finite_difference_increment);
+
+void d_inexact_newton_for_zero_horizon_ocp_delete(
+    struct d_inexact_newton_for_zero_horizon_ocp *newton);
 
 void d_inexact_newton_for_zero_horizon_ocp_compute_b(
     struct d_inexact_newton_for_zero_horizon_ocp *newton, 
     struct d_inexact_newton_for_zero_horizon_ocp_mfgmres_args *args,
-    struct blasfeo_dvec *direction, struct blasfeo_dvec *b);
+    double *direction, double *b);
 
 void d_inexact_newton_for_zero_horizon_ocp_compute_ax(
     struct d_inexact_newton_for_zero_horizon_ocp *newton, 
     struct d_inexact_newton_for_zero_horizon_ocp_mfgmres_args *args,
-    struct blasfeo_dvec *direction, struct blasfeo_dvec *ax);
+    double *direction, double *ax);
 
 double d_inexact_newton_for_zero_horizon_ocp_get_error_norm(
     struct d_inexact_newton_for_zero_horizon_ocp *newton, double initial_time, 
-    struct blasfeo_dvec *initial_state, struct blasfeo_dvec *initial_solution);
+    double *initial_state, double *initial_solution);
 
 void d_inexact_newton_for_zero_horizon_ocp_get_terminal_cost_derivative(
     struct d_inexact_newton_for_zero_horizon_ocp *newton, double initial_time, 
-    struct blasfeo_dvec *initial_state, 
-    struct blasfeo_dvec *terminal_cost_derivative);
+    double *initial_state, double *terminal_cost_derivative);
 
 int d_inexact_newton_for_zero_horizon_ocp_dimx();
 

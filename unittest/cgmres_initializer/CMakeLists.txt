@@ -3,6 +3,7 @@ add_executable(
     d_zero_horizon_ocp_test.cpp
     ${SRC_DIR}/cgmres_initializer/d_zero_horizon_ocp.c
     ${NMPC_MODEL_DIR}/d_nmpc_model.c
+    ${SRC_DIR}/common/d_memory_manager.c
 )
 target_include_directories(
     d_zero_horizon_ocp_test
@@ -10,6 +11,7 @@ target_include_directories(
     ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
     ${GTEST_LIBRARY_PATH}
@@ -17,7 +19,6 @@ target_include_directories(
 target_link_libraries(
     d_zero_horizon_ocp_test
     PUBLIC
-    blasfeo
     GTest::GTest
     GTest::GMock
 )
@@ -35,6 +36,7 @@ add_executable(
     s_zero_horizon_ocp_test.cpp
     ${SRC_DIR}/cgmres_initializer/s_zero_horizon_ocp.c
     ${NMPC_MODEL_DIR}/s_nmpc_model.c
+    ${SRC_DIR}/common/s_memory_manager.c
 )
 target_include_directories(
     s_zero_horizon_ocp_test
@@ -42,6 +44,7 @@ target_include_directories(
     ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
     ${GTEST_LIBRARY_PATH}
@@ -49,7 +52,6 @@ target_include_directories(
 target_link_libraries(
     s_zero_horizon_ocp_test
     PUBLIC
-    blasfeo
     GTest::GTest
     GTest::GMock
 )
@@ -62,17 +64,17 @@ add_test(
     COMMAND $<TARGET_FILE:s_zero_horizon_ocp_test>
 )
 
+
 add_executable(
     d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
     d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test.cpp
-    ${NMPC_MODEL_DIR}/d_nmpc_model.c
+    ${SRC_DIR}/common/d_memory_manager.c
 )
 target_include_directories(
     d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
-    ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
     ${GTEST_LIBRARY_PATH}
@@ -80,7 +82,6 @@ target_include_directories(
 target_link_libraries(
     d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
     PUBLIC
-    blasfeo
     GTest::GTest
     GTest::GMock
 )
@@ -96,14 +97,13 @@ add_test(
 add_executable(
     s_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
     s_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test.cpp
-    ${NMPC_MODEL_DIR}/s_nmpc_model.c
+    ${SRC_DIR}/common/s_memory_manager.c
 )
 target_include_directories(
     s_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
-    ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
     ${GTEST_LIBRARY_PATH}
@@ -111,7 +111,6 @@ target_include_directories(
 target_link_libraries(
     s_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
     PUBLIC
-    blasfeo
     GTest::GTest
     GTest::GMock
 )
@@ -130,13 +129,15 @@ add_executable(
     ${SRC_DIR}/cgmres_initializer/d_inexact_newton_for_zero_horizon_ocp.c
     ${SRC_DIR}/cgmres_initializer/d_zero_horizon_ocp.c
     ${NMPC_MODEL_DIR}/d_nmpc_model.c
+    ${SRC_DIR}/common/d_memory_manager.c
+    ${SRC_DIR}/common/d_linear_algebra.c
 )
 target_include_directories(
     d_inexact_newton_for_zero_horizon_ocp_test
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
     ${GTEST_LIBRARY_PATH}
@@ -144,7 +145,6 @@ target_include_directories(
 target_link_libraries(
     d_inexact_newton_for_zero_horizon_ocp_test
     PUBLIC
-    blasfeo
     GTest::GTest
     GTest::GMock
 )
@@ -155,4 +155,38 @@ add_dependencies(
 add_test(
     NAME d_inexact_newton_for_zero_horizon_ocp_test
     COMMAND $<TARGET_FILE:d_inexact_newton_for_zero_horizon_ocp_test>
+)
+
+add_executable(
+    s_inexact_newton_for_zero_horizon_ocp_test
+    s_inexact_newton_for_zero_horizon_ocp_test.cpp
+    ${SRC_DIR}/cgmres_initializer/s_inexact_newton_for_zero_horizon_ocp.c
+    ${SRC_DIR}/cgmres_initializer/s_zero_horizon_ocp.c
+    ${NMPC_MODEL_DIR}/s_nmpc_model.c
+    ${SRC_DIR}/common/s_memory_manager.c
+    ${SRC_DIR}/common/s_linear_algebra.c
+)
+target_include_directories(
+    s_inexact_newton_for_zero_horizon_ocp_test
+    PUBLIC
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    s_inexact_newton_for_zero_horizon_ocp_test
+    PUBLIC
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    s_inexact_newton_for_zero_horizon_ocp_test
+    googletest
+)
+add_test(
+    NAME s_inexact_newton_for_zero_horizon_ocp_test
+    COMMAND $<TARGET_FILE:s_inexact_newton_for_zero_horizon_ocp_test>
 )

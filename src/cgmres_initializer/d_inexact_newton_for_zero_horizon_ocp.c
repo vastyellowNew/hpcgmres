@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#include <blasfeo.h>
-
+#include "d_memory_manager.h"
+#include "d_linear_algebra.h"
 #include "d_inexact_newton_for_zero_horizon_ocp.h"
 
 
@@ -12,6 +12,7 @@
 #define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_STRSIZE d_inexact_newton_for_zero_horizon_ocp_strsize
 #define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_MEMSIZE d_inexact_newton_for_zero_horizon_ocp_memsize
 #define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_CREATE d_inexact_newton_for_zero_horizon_ocp_create
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_DELETE d_inexact_newton_for_zero_horizon_ocp_delete
 #define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_COMPUTE_B d_inexact_newton_for_zero_horizon_ocp_compute_b
 #define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_COMPUTE_AX d_inexact_newton_for_zero_horizon_ocp_compute_ax
 #define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_GET_ERROR_NORM d_inexact_newton_for_zero_horizon_ocp_get_error_norm
@@ -26,19 +27,19 @@
 #define ZERO_HORIZON_OCP_STRSIZE d_zero_horizon_ocp_strsize 
 #define ZERO_HORIZON_OCP_MEMSIZE d_zero_horizon_ocp_memsize
 #define ZERO_HORIZON_OCP_CREATE d_zero_horizon_ocp_create
+#define ZERO_HORIZON_OCP_DELETE d_zero_horizon_ocp_delete
 #define ZERO_HORIZON_OCP_COMPUTE_OPTIMALITY_RESIDUAL d_zero_horizon_ocp_compute_optimality_residual
 #define ZERO_HORIZON_OCP_COMPUTE_TERMINAL_COST_DERIVATIVE d_zero_horizon_ocp_compute_terminal_cost_derivative
 #define ZERO_HORIZON_OCP_DIMX d_zero_horizon_ocp_dimx
 #define ZERO_HORIZON_OCP_DIMU d_zero_horizon_ocp_dimu
 #define ZERO_HORIZON_OCP_DIMC d_zero_horizon_ocp_dimc
 
-#define SIZE_STRVEC blasfeo_memsize_dvec
-#define CREATE_STRVEC blasfeo_create_dvec
-#define STRVEC blasfeo_dvec
-#define VECSE blasfeo_dvecse
-#define DOT blasfeo_ddot
-#define AXPY blasfeo_daxpy
-#define AXPBY blasfeo_daxpby
+#define ALLOCATE_VEC allocate_dvec
+#define FREE_VEC free_dvec
+
+#define VECNRM2 hpcgmres_dvecnrm2
+#define AXPY hpcgmres_daxpy
+#define AXPBY hpcgmres_daxpby
 
 
 #include "x_inexact_newton_for_zero_horizon_ocp.c"

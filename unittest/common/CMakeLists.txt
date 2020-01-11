@@ -63,7 +63,6 @@ add_executable(
 target_include_directories(
     d_givens_rotation_test
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
@@ -72,7 +71,6 @@ target_include_directories(
 target_link_libraries(
     d_givens_rotation_test
     PUBLIC
-    blasfeo
     GTest::GTest
     GTest::GMock
 )
@@ -94,7 +92,6 @@ add_executable(
 target_include_directories(
     s_givens_rotation_test
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
@@ -103,7 +100,6 @@ target_include_directories(
 target_link_libraries(
     s_givens_rotation_test
     PUBLIC
-    blasfeo
     GTest::GTest
     GTest::GMock
 )

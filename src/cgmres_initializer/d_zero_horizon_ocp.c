@@ -1,22 +1,22 @@
-#include <stdlib.h>
-#include <stdio.h>
-
-#include <blasfeo.h>
-
 #include "d_zero_horizon_ocp.h"
+#include "d_memory_manager.h"
 
 
 #define REAL double
 
-#define ZERO_HORIZON_OCP d_zero_horizon_ocp
 #define ZERO_HORIZON_OCP_STRSIZE d_zero_horizon_ocp_strsize
 #define ZERO_HORIZON_OCP_MEMSIZE d_zero_horizon_ocp_memsize
 #define ZERO_HORIZON_OCP_CREATE d_zero_horizon_ocp_create
+#define ZERO_HORIZON_OCP_DELETE d_zero_horizon_ocp_delete
 #define ZERO_HORIZON_OCP_COMPUTE_OPTIMALITY_RESIDUAL d_zero_horizon_ocp_compute_optimality_residual
 #define ZERO_HORIZON_OCP_COMPUTE_TERMINAL_COST_DERIVATIVE d_zero_horizon_ocp_compute_terminal_cost_derivative
 #define ZERO_HORIZON_OCP_DIMX d_zero_horizon_ocp_dimx
 #define ZERO_HORIZON_OCP_DIMU d_zero_horizon_ocp_dimu
 #define ZERO_HORIZON_OCP_DIMC d_zero_horizon_ocp_dimc
+#define ZERO_HORIZON_OCP d_zero_horizon_ocp
+
+#define ALLOCATE_VEC allocate_dvec
+#define FREE_VEC free_dvec
 
 #define NMPC_MODEL_STRSIZE d_nmpc_model_strsize
 #define NMPC_MODEL_CREATE d_nmpc_model_create
@@ -26,11 +26,6 @@
 #define NMPC_MODEL_DIMU d_nmpc_model_dimu
 #define NMPC_MODEL_DIMC d_nmpc_model_dimc
 #define NMPC_MODEL d_nmpc_model
-
-#define STRVEC blasfeo_dvec
-#define SIZE_STRVEC blasfeo_memsize_dvec
-#define CREATE_STRVEC blasfeo_create_dvec
-#define VECSE blasfeo_dvecse
 
 
 #include "x_zero_horizon_ocp.c"
