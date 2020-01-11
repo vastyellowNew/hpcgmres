@@ -1,14 +1,29 @@
 This repository is under development
 
+[![Build Status](https://travis-ci.org/mayataka/hpcgmres.svg?branch=master)](https://travis-ci.org/mayataka/hpcgmres)
+
 ## Introduction
 This is a high-performance continuation/GMRES (C/GMRES) method for nonlinear model predictive control, HPCGMRES.
 This is intended to embedded optimization using high-performance linear algebra package [BLASFEO](https://github.com/giaf/blasfeo.git) and inspired by [HPIPM](https://github.com/giaf/hpipm.git).
 
 
 ## Installation
-1. Install [BLASFEO](https://github.com/giaf/blasfeo.git) in your environment as introduced in https://github.com/giaf/blasfeo.git.
-2. Clone HPCGMRES in arbitrary directory.
-3. 
+1. Clone this repository and install [BLASFEO](https://github.com/giaf/blasfeo.git) as
+    ```
+    $ git clone https://github.com/mayataka/hpcgmres
+    ```
+    ```
+    $ git clone https://github.com/giaf/blasfeo.git
+    ```
+    ```
+    $ cd blasfeo
+    ```
+    ```
+    $ make static_library -j $(nproc) TARGET=GENERIC
+    ```
+    ```
+    $ - cd ..
+    ```
 
 
 ## License

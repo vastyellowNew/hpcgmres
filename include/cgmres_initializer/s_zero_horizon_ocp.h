@@ -41,6 +41,12 @@ void s_zero_horizon_ocp_compute_terminal_cost_derivative(
     struct blasfeo_svec *current_state, 
     struct blasfeo_svec *terminal_cost_derivative);
 
+int s_zero_horizon_ocp_dimx();
+
+int s_zero_horizon_ocp_dimu();
+
+int s_zero_horizon_ocp_dimc();
+
 
 #ifdef __cplusplus
 } /* extern "C" */

@@ -89,3 +89,16 @@ void ZERO_HORIZON_OCP_COMPUTE_TERMINAL_COST_DERIVATIVE(
   NMPC_MODEL_PHIX(&ocp->model, current_time, current_state->pa, 
                   terminal_cost_derivative->pa);
 }
+
+
+int ZERO_HORIZON_OCP_DIMX() {
+  return NMPC_MODEL_DIMX();
+}
+
+int ZERO_HORIZON_OCP_DIMU() {
+  return NMPC_MODEL_DIMU();
+}
+
+int ZERO_HORIZON_OCP_DIMC() {
+  return NMPC_MODEL_DIMC();
+}

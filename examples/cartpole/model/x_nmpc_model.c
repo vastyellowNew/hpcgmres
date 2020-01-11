@@ -16,10 +16,23 @@ void NMPC_MODEL_CREATE(struct NMPC_MODEL *model) {
   model->u_max = 15;
   model->dummy_weight = 0.1;
 
-  model->q[0] = 2.5; model->q[1] = 10; model->q[2] = 0.01; model->q[3] = 0.01; 
-  model->r[0] = 1.0; model->r[1] = 0.01; 
-  model->q_terminal[0] = 2.5; model->q_terminal[1] = 10; model->q_terminal[2] = 0.01; model->q_terminal[3] = 0.01; 
-  model->x_ref[0] = 0; model->x_ref[1] = M_PI; model->x_ref[2] = 0; model->x_ref[3] = 0; 
+  model->q[0] = 2.5; 
+  model->q[1] = 10; 
+  model->q[2] = 0.01; 
+  model->q[3] = 0.01; 
+
+  model->r[0] = 1.0; 
+  model->r[1] = 0.01; 
+
+  model->q_terminal[0] = 2.5; 
+  model->q_terminal[1] = 10; 
+  model->q_terminal[2] = 0.01; 
+  model->q_terminal[3] = 0.01; 
+
+  model->x_ref[0] = 0; 
+  model->x_ref[1] = M_PI; 
+  model->x_ref[2] = 0; 
+  model->x_ref[3] = 0; 
 }
 
 

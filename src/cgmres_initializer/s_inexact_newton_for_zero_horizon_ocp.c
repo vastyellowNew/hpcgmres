@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 #include <blasfeo.h>
 
@@ -17,14 +18,16 @@
 #define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_GET_ERROR_NORM s_inexact_newton_for_zero_horizon_ocp_get_error_norm
 #define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_GET_TERMINAL_COST_DERIVATIVE s_inexact_newton_for_zero_horizon_ocp_get_terminal_cost_derivative
 #define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_MFGMRES_ARGS s_inexact_newton_for_zero_horizon_ocp_mfgmres_args
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_DIMX s_inexact_newton_for_zero_horizon_ocp_dimx
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_DIMU s_inexact_newton_for_zero_horizon_ocp_dimu
+#define INEXACT_NEWTON_FOR_ZERO_HORIZON_OCP_DIMC s_inexact_newton_for_zero_horizon_ocp_dimc
 
 #define STRVEC blasfeo_svec
 #define SIZE_STRVEC blasfeo_memsize_svec
-#define CREATE_STRVEC blasfeo_memsize_svec
-#define VECCSE blasfeo_svecse
+#define CREATE_STRVEC blasfeo_create_svec
+#define VECSE blasfeo_svecse
 #define VECDOT blasfeo_sdot
 #define AXPY blasfeo_saxpy
-#define AXBPY blasfeo_saxbpy
-
+#define AXBPY blasfeo_saxpby
 
 #include "x_inexact_newton_for_zero_horizon_ocp.c"

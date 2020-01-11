@@ -5,6 +5,7 @@
 
 #define APPLY_GIVENS_ROTATION_TO_VEC s_apply_givens_rotation_to_vec
 #define APPLY_GIVENS_ROTATION_TO_MAT s_apply_givens_rotation_to_mat
+#define APPLY_GIVENS_ROTATION s_apply_givens_rotation
 
 #define STRVEC blasfeo_svec
 #define STRMAT blasfeo_smat

@@ -48,6 +48,9 @@ TEST_F(d_zero_horizon_ocp_test, memsize) {
 
 
 TEST_F(d_zero_horizon_ocp_test, dim) {
+  EXPECT_EQ(4, d_zero_horizon_ocp_dimx());
+  EXPECT_EQ(2, d_zero_horizon_ocp_dimu());
+  EXPECT_EQ(1, d_zero_horizon_ocp_dimc());
   EXPECT_EQ(4, ocp.model.dimx);
   EXPECT_EQ(2, ocp.model.dimu);
   EXPECT_EQ(1, ocp.model.dimc);

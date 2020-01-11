@@ -33,7 +33,7 @@ protected:
 };
 
 
-TEST_F(s_givens_rotation_test, test_mat) {
+TEST_F(s_givens_rotation_test, blasfeo_mat) {
   for (int i=0; i<dim; ++i) {
     for (int j=0; j<dim; ++j) {
       blasfeo_sgein1((float)rand()/RAND_MAX, &mat, i, j);
@@ -56,7 +56,7 @@ TEST_F(s_givens_rotation_test, test_mat) {
 }
 
 
-TEST_F(s_givens_rotation_test, test_vec) {
+TEST_F(s_givens_rotation_test, blasfeo_vec) {
   for (int i=0; i<dim; ++i) {
     blasfeo_svecin1((float)rand()/RAND_MAX, &vec, i);
   }
@@ -71,6 +71,27 @@ TEST_F(s_givens_rotation_test, test_vec) {
     s_apply_givens_rotation_to_vec(&vec, &givens_c_vec, &givens_s_vec, i);
     EXPECT_EQ(tmp1, blasfeo_svecex1(&vec, i));
     EXPECT_EQ(tmp2, blasfeo_svecex1(&vec, i+1));
+  }
+}
+
+
+TEST_F(s_givens_rotation_test, test_vec) {
+  float svec[dim], sgivens_c_vec[dim], sgivens_s_vec[dim];
+  for (int i=0; i<dim; ++i) {
+    svec[i] = (float)rand()/RAND_MAX;
+    sgivens_c_vec[i] = 0.0;
+    sgivens_s_vec[i] = 0.0;
+  }
+  for (int i=0; i<dim-1; ++i) {
+    float tmp1 = sgivens_c_vec[i] * svec[i]
+                    - sgivens_s_vec[i] * svec[i+1];
+    float tmp2 = sgivens_s_vec[i] * svec[i]
+                    + sgivens_c_vec[i] * svec[i+1];
+    svec[i]   = tmp1;
+    svec[i+1] = tmp2;
+    s_apply_givens_rotation(svec, sgivens_c_vec, sgivens_s_vec, i);
+    EXPECT_EQ(tmp1, svec[i]);
+    EXPECT_EQ(tmp2, svec[i+1]);
   }
 }
 

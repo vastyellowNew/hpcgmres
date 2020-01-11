@@ -41,6 +41,12 @@ void d_zero_horizon_ocp_compute_terminal_cost_derivative(
     struct blasfeo_dvec *current_state, 
     struct blasfeo_dvec *terminal_cost_derivative);
 
+int d_zero_horizon_ocp_dimx();
+
+int d_zero_horizon_ocp_dimu();
+
+int d_zero_horizon_ocp_dimc();
+
 
 #ifdef __cplusplus
 } /* extern "C" */

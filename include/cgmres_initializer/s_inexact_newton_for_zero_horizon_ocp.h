@@ -2,7 +2,6 @@
 #define HPCGMRES_S_INEXACT_NEWTON_FOR_ZERO_HORIZON_COP_H_
 
 
-#include <cmath>
 #include <blasfeo.h>
 
 #include "s_zero_horizon_ocp.h"
@@ -15,7 +14,7 @@ extern "C" {
 
 
 struct s_inexact_newton_for_zero_horizon_ocp {
-  struct s_zero_horizon_ocp *ocp;
+  struct s_zero_horizon_ocp ocp;
   struct blasfeo_svec *incremented_solution;
   struct blasfeo_svec *optimality_residual;
   struct blasfeo_svec *optimality_residual1;
@@ -26,8 +25,7 @@ struct s_inexact_newton_for_zero_horizon_ocp {
 
 int s_inexact_newton_for_zero_horizon_ocp_strsize();
 
-int s_inexact_newton_for_zero_horizon_ocp_memsize(
-    struct s_inexact_newton_for_zero_horizon_ocp *newton);
+int s_inexact_newton_for_zero_horizon_ocp_memsize();
 
 void s_inexact_newton_for_zero_horizon_ocp_create(
     struct s_inexact_newton_for_zero_horizon_ocp *newton, 
@@ -51,6 +49,12 @@ void s_inexact_newton_for_zero_horizon_ocp_get_terminal_cost_derivative(
     struct s_inexact_newton_for_zero_horizon_ocp *newton, float initial_time, 
     struct blasfeo_svec *initial_state, 
     struct blasfeo_svec *terminal_cost_derivative);
+
+int s_inexact_newton_for_zero_horizon_ocp_dimx();
+
+int s_inexact_newton_for_zero_horizon_ocp_dimu();
+
+int s_inexact_newton_for_zero_horizon_ocp_dimc();
 
 
 #ifdef __cplusplus
