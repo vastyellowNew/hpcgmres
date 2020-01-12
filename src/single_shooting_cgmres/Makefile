@@ -1,10 +1,7 @@
 include ../../Makefile.rule
 
 OBJS =
-
-ifeq ($(TARGET), GENERIC)
 OBJS +=
-endif
 
 # double precision
 OBJS += d_single_shooting_ocp.o 

@@ -1,10 +1,7 @@
 include ../../Makefile.rule
 
 OBJS =
-
-ifeq ($(TARGET), GENERIC)
 OBJS +=
-endif
 
 # double precision
 OBJS += d_zero_horizon_ocp.o 
