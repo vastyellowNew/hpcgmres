@@ -1,5 +1,0 @@
-simulation name: d_cart_pole
-simulation time: 10 [sec]
-Total CPU time for control update: 1.68615 [sec]
-sampling time: 0.001 [sec]
-CPU time for per control update: 0.000168615 [sec]

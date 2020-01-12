@@ -20,7 +20,7 @@ int main() {
 
   d_single_shooting_cgmres_create(&cgmres, T_f, alpha, initial_time, N, 
                                   finite_difference_increment, zeta, kmax);
-  double initial_guess[3] = {0.1, 0.1, 0.1};
+  double initial_guess[3] = {0.01, 10, 0.01};
   d_single_shooting_cgmres_set_initialization_parameters(&cgmres, 1.0e-08, 100, 
                                                          initial_guess);
   double sampling_time = 0.001;

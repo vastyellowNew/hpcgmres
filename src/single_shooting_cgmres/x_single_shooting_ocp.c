@@ -24,12 +24,12 @@ void SINGLE_SHOOTING_OCP_CREATE(struct SINGLE_SHOOTING_OCP *ocp, REAL T_f,
   ocp->x_sequence = ALLOCATE_MAT(N, NMPC_MODEL_DIMX());
   ocp->lmd_sequence = ALLOCATE_MAT(N, NMPC_MODEL_DIMX());
   ocp->dx = ALLOCATE_VEC(NMPC_MODEL_DIMX());
-  ocp->dimx = ocp->model.dimx;
-  ocp->dimu = ocp->model.dimu;
-  ocp->dimc = ocp->model.dimc;
-  ocp->dimuc = ocp->model.dimu + ocp->model.dimc;
+  ocp->dimx = NMPC_MODEL_DIMX();
+  ocp->dimu = NMPC_MODEL_DIMU();
+  ocp->dimc = NMPC_MODEL_DIMC();
+  ocp->dimuc = ocp->dimu + ocp->dimc;
   ocp->N = N;
-  ocp->dim_solution = N*(ocp->model.dimu+ocp->model.dimc);
+  ocp->dim_solution = N * (ocp->dimu+ocp->dimc);
   ocp->memsize = SINGLE_SHOOTING_OCP_MEMSIZE(N);
 }
 
@@ -65,6 +65,7 @@ void SINGLE_SHOOTING_OCP_COMPUTE_OPTIMALITY_RESIDUAL(
   // time, solution_vec and the state_vec.
   NMPC_MODEL_PHIX(&ocp->model, tau, ocp->x_sequence[ocp->N-1], 
                   ocp->lmd_sequence[ocp->N-1]);
+  tau = horizon_length - delta_tau;
   for (ii=ocp->N-1; ii>=1; --ii, tau-=delta_tau) {
     NMPC_MODEL_HX(&ocp->model, tau, ocp->x_sequence[ii-1], 
                   &(solution[ii*ocp->dimuc]), ocp->lmd_sequence[ii],
@@ -75,9 +76,9 @@ void SINGLE_SHOOTING_OCP_COMPUTE_OPTIMALITY_RESIDUAL(
 
   // Compute the erros in optimality over the horizon on the basis of the 
   // control_input_vec and the state_vec.
-  tau = current_time;
-  NMPC_MODEL_HU(&ocp->model, tau, current_state, solution, ocp->lmd_sequence[1],
-                optimality_residual);
+  NMPC_MODEL_HU(&ocp->model, current_time, current_state, solution, 
+                ocp->lmd_sequence[0], optimality_residual);
+  tau = current_time + delta_tau;
   for (ii=1; ii<ocp->N; ++ii, tau+=delta_tau) {
     NMPC_MODEL_HU(&ocp->model, tau, ocp->x_sequence[ii-1], 
                   &(solution[ii*ocp->dimuc]), ocp->lmd_sequence[ii],

@@ -15,11 +15,11 @@ int ZERO_HORIZON_OCP_MEMSIZE() {
 void ZERO_HORIZON_OCP_CREATE(struct ZERO_HORIZON_OCP *ocp) {
   NMPC_MODEL_CREATE(&ocp->model);
   ocp->lmd_vec = ALLOCATE_VEC(NMPC_MODEL_DIMX());
-  ocp->dimx = ocp->model.dimx;
-  ocp->dimu = ocp->model.dimu;
-  ocp->dimc = ocp->model.dimc;
-  ocp->dimuc = ocp->model.dimu + ocp->model.dimc;
-  ocp->dim_solution = ocp->model.dimu + ocp->model.dimc;
+  ocp->dimx = NMPC_MODEL_DIMX();
+  ocp->dimu = NMPC_MODEL_DIMU();
+  ocp->dimc = NMPC_MODEL_DIMC();
+  ocp->dimuc = NMPC_MODEL_DIMU() + NMPC_MODEL_DIMC();
+  ocp->dim_solution = NMPC_MODEL_DIMU() + NMPC_MODEL_DIMC();
   ocp->memsize = ZERO_HORIZON_OCP_MEMSIZE();
 }
 
