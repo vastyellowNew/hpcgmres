@@ -73,7 +73,8 @@ void SINGLE_SHOOTING_CGMRES_INITIALIZE_SOLUTION(
   CGMRES_INITIALIZER_COMPUTE_INITIAL_SOLUTION(&cgmres->initializer, 
                                               initial_time, initial_state, 
                                               cgmres->initial_solution);
-  for (int i=0; i<cgmres->N; ++i) {
+  int i;
+  for (i=0; i<cgmres->N; ++i) {
     VECCP(cgmres->dimuc, cgmres->initial_solution, 
           &(cgmres->solution[i*cgmres->dimuc]));
   }

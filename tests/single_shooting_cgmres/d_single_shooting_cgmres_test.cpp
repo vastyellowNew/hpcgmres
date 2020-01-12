@@ -53,6 +53,9 @@ protected:
 
   virtual void TearDown() {
     d_single_shooting_cgmres_delete(&cgmres);
+    d_single_shooting_continuation_delete(&continuation);
+    d_mfgmres_for_single_shooting_cgmres_delete(&mfgmres);
+    d_cgmres_initializer_delete(&initializer);
     free_dvec(solution);
     free_dvec(solution_update);
     free_dvec(initial_solution);
