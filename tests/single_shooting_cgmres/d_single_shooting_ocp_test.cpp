@@ -105,7 +105,7 @@ TEST_F(d_single_shooting_ocp_test, compute_optimality_residual) {
     hpcgmres_daxpy(dimx, delta_tau, dx, lmd_seq[ii], lmd_seq[ii-1]);
   }
   tau = current_time;
-  d_nmpc_model_hu(&model, tau, x0, solution, lmd_seq[1], opt_res);
+  d_nmpc_model_hu(&model, tau, x0, solution, lmd_seq[0], opt_res);
   for (int ii=1; ii<N; ++ii, tau+=delta_tau) {
     d_nmpc_model_hu(&model, tau, x_seq[ii-1], &(solution[ii*dimuc]), lmd_seq[ii],
                     &(opt_res[ii*dimuc]));

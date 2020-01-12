@@ -105,7 +105,7 @@ TEST_F(s_single_shooting_ocp_test, compute_optimality_residual) {
     hpcgmres_saxpy(dimx, delta_tau, dx, lmd_seq[ii], lmd_seq[ii-1]);
   }
   tau = current_time;
-  s_nmpc_model_hu(&model, tau, x0, solution, lmd_seq[1], opt_res);
+  s_nmpc_model_hu(&model, tau, x0, solution, lmd_seq[0], opt_res);
   for (int ii=1; ii<N; ++ii, tau+=delta_tau) {
     s_nmpc_model_hu(&model, tau, x_seq[ii-1], &(solution[ii*dimuc]), lmd_seq[ii],
                     &(opt_res[ii*dimuc]));
