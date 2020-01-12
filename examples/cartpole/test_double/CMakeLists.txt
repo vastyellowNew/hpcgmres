@@ -52,19 +52,19 @@ target_link_libraries(
 )
 
 add_executable(
-    d_main
-    d_main.cpp
-    ${CMAKE_SOURCE_DIR}/../../simulator/cgmres_simulator.cpp
+    dtest
+    main.cpp
+    ${CMAKE_SOURCE_DIR}/../../simulator/d_simulator.cpp
     ${CMAKE_SOURCE_DIR}/../../simulator/numerical_integrator.cpp
     ${CMAKE_SOURCE_DIR}/../../simulator/save_simulation_data.cpp
 )
 target_link_libraries(
-    d_main
+    dtest
     PRIVATE
     d_single_shooting_cgmres
 )
 target_include_directories(
-    d_main
+    dtest
     PRIVATE
     ${INCLUDE_DIR}
     ${NMPC_MODEL_DIR}

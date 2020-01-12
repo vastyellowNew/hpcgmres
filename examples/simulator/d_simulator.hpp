@@ -1,5 +1,5 @@
-#ifndef CGMRES_SIMULATOR_H
-#define CGMRES_SIMULATOR_H
+#ifndef D_CGMRES_SIMULATOR_H
+#define D_CGMRES_SIMULATOR_H
 
 #include <iostream>
 #include <fstream>
@@ -20,10 +20,4 @@ void simulation(struct d_single_shooting_cgmres *cgmres,
                 const double sampling_period, const std::string save_dir, 
                 const std::string savefile_name);
 
-void simulation(struct s_single_shooting_cgmres *cgmres, 
-                const double* initial_state_vec, 
-                const double start_time, const double end_time, 
-                const double sampling_period, const std::string save_dir, 
-                const std::string savefile_name);
-
-#endif // CGMRES_SIMULATOR_H
+#endif // D_CGMRES_SIMULATOR_H

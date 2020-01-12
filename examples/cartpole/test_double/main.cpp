@@ -27,10 +27,10 @@ int main() {
   double simulation_time = 10;
   double current_time = 0;
 
-  std::string save_dir_name("../simulation_result");
+  std::string save_dir_name("simulation_result");
   int mkdir_err = mkdir(save_dir_name.c_str(), 0755);
-  dsimulation(&cgmres, state, initial_time, simulation_time, sampling_time, 
-               "../simulation_result", "d_cart_pole");
+  simulation(&cgmres, state, initial_time, simulation_time, sampling_time, 
+              "simulation_result", "d_cart_pole");
 
   return 0;
 }
