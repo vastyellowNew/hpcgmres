@@ -1,3 +1,6 @@
+#include <string>
+#include <sys/stat.h>
+
 extern "C" {
 #include "hpcgmres.h"
 }
@@ -20,14 +23,14 @@ int main() {
   double initial_guess[3] = {0.1, 0.1, 0.1};
   d_single_shooting_cgmres_set_initialization_parameters(&cgmres, 1.0e-08, 100, 
                                                          initial_guess);
-
-  double control_input[1], next_state[4], dx[4];
   double sampling_time = 0.001;
   double simulation_time = 10;
   double current_time = 0;
 
+  std::string save_dir_name("../simulation_result");
+  int mkdir_err = mkdir(save_dir_name.c_str(), 0755);
   dsimulation(&cgmres, state, initial_time, simulation_time, sampling_time, 
-               "d_cart_pole", "d_cart_pole");
+               "../simulation_result", "d_cart_pole");
 
   return 0;
 }
