@@ -1,5 +1,5 @@
-#include "s_zero_horizon_ocp.h"
-#include "s_memory_manager.h"
+#include "cgmres_initializer/s_zero_horizon_ocp.h"
+#include "common/s_memory_manager.h"
 
 
 #define REAL float

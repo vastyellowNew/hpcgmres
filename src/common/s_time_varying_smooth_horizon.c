@@ -1,4 +1,4 @@
-#include "s_time_varying_smooth_horizon.h"
+#include "common/s_time_varying_smooth_horizon.h"
 
 #include <math.h>
 

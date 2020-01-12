@@ -3,9 +3,9 @@
 #include <math.h>
 #include <float.h>
 
-#include "d_memory_manager.h"
-#include "d_linear_algebra.h"
-#include "d_givens_rotation.h"
+#include "common/d_memory_manager.h"
+#include "common/d_linear_algebra.h"
+#include "common/d_givens_rotation.h"
 
 
 #define REAL double

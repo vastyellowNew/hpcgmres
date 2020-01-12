@@ -1,4 +1,4 @@
-#include "d_mfgmres_for_single_shooting_cgmres.h"
+#include "single_shooting_cgmres/d_mfgmres_for_single_shooting_cgmres.h"
 
 
 #define MFGMRES_STRSIZE d_mfgmres_for_single_shooting_cgmres_strsize

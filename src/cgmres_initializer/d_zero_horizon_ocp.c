@@ -1,5 +1,5 @@
-#include "d_zero_horizon_ocp.h"
-#include "d_memory_manager.h"
+#include "cgmres_initializer/d_zero_horizon_ocp.h"
+#include "common/d_memory_manager.h"
 
 
 #define REAL double

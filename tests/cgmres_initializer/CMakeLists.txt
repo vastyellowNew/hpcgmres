@@ -9,6 +9,7 @@ target_include_directories(
     d_zero_horizon_ocp_test
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -41,6 +42,7 @@ target_include_directories(
     s_zero_horizon_ocp_test
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -71,6 +73,7 @@ add_executable(
 target_include_directories(
     d_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
     PUBLIC
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -100,6 +103,7 @@ add_executable(
 target_include_directories(
     s_inexact_newton_for_zero_horizon_ocp_mfgmres_args_test
     PUBLIC
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -134,6 +138,7 @@ target_include_directories(
     d_inexact_newton_for_zero_horizon_ocp_test
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -168,6 +173,7 @@ target_include_directories(
     s_inexact_newton_for_zero_horizon_ocp_test
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -205,6 +211,7 @@ target_include_directories(
     d_mfgmres_for_cgmres_initializer_test
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -241,6 +248,7 @@ target_include_directories(
     s_mfgmres_for_cgmres_initializer_test
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -279,6 +287,7 @@ target_include_directories(
     d_cgmres_initializer_test
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -316,6 +325,7 @@ target_include_directories(
     s_cgmres_initializer_test
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}

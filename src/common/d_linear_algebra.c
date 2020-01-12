@@ -1,4 +1,4 @@
-#include "d_linear_algebra.h"
+#include "common/d_linear_algebra.h"
 
 
 void hpcgmres_dvecset(int dim, double value, double *x) {

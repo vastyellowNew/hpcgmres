@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "s_single_shooting_continuation.h"
-#include "s_single_shooting_ocp.h"
-#include "s_linear_algebra.h"
-#include "s_memory_manager.h"
+#include "single_shooting_cgmres/s_single_shooting_continuation.h"
+#include "single_shooting_cgmres/s_single_shooting_ocp.h"
+#include "common/s_linear_algebra.h"
+#include "common/s_memory_manager.h"
 
 
 #define REAL float

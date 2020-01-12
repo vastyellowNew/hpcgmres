@@ -1,8 +1,8 @@
-#include "s_single_shooting_ocp.h"
+#include "single_shooting_cgmres/s_single_shooting_ocp.h"
 #include "s_nmpc_model.h"
-#include "s_time_varying_smooth_horizon.h"
-#include "s_linear_algebra.h"
-#include "s_memory_manager.h"
+#include "common/s_time_varying_smooth_horizon.h"
+#include "common/s_linear_algebra.h"
+#include "common/s_memory_manager.h"
 
 
 #define REAL float

@@ -3,9 +3,9 @@
 #include <math.h>
 #include <float.h>
 
-#include "s_memory_manager.h"
-#include "s_linear_algebra.h"
-#include "s_givens_rotation.h"
+#include "common/s_memory_manager.h"
+#include "common/s_linear_algebra.h"
+#include "common/s_givens_rotation.h"
 
 
 #define REAL float

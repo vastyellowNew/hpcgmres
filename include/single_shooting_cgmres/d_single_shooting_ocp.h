@@ -3,7 +3,7 @@
 
 
 #include "d_nmpc_model.h"
-#include "d_time_varying_smooth_horizon.h"
+#include "common/d_time_varying_smooth_horizon.h"
 
 
 #ifdef __cplusplus

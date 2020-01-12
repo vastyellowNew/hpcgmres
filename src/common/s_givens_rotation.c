@@ -1,4 +1,4 @@
-#include "s_givens_rotation.h"
+#include "common/s_givens_rotation.h"
 
 
 #define REAL float

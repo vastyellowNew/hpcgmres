@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "d_single_shooting_continuation.h"
-#include "d_single_shooting_ocp.h"
-#include "d_linear_algebra.h"
-#include "d_memory_manager.h"
+#include "single_shooting_cgmres/d_single_shooting_continuation.h"
+#include "single_shooting_cgmres/d_single_shooting_ocp.h"
+#include "common/d_linear_algebra.h"
+#include "common/d_memory_manager.h"
 
 
 #define REAL double

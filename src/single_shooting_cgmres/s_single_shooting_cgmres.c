@@ -1,10 +1,10 @@
-#include "s_single_shooting_cgmres.h"
+#include "single_shooting_cgmres/s_single_shooting_cgmres.h"
 
-#include "s_mfgmres_for_single_shooting_cgmres.h"
-#include "s_single_shooting_continuation.h"
-#include "s_single_shooting_continuation_mfgmres_args.h"
-#include "s_linear_algebra.h"
-#include "s_memory_manager.h"
+#include "single_shooting_cgmres/s_mfgmres_for_single_shooting_cgmres.h"
+#include "single_shooting_cgmres/s_single_shooting_continuation.h"
+#include "single_shooting_cgmres/s_single_shooting_continuation_mfgmres_args.h"
+#include "common/s_linear_algebra.h"
+#include "common/s_memory_manager.h"
 
 
 #define REAL float

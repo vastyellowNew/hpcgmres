@@ -2,8 +2,8 @@
 #define HPCGMRES_S_MFGMRES_FOR_CGMRES_INITIALIZER_H_
 
 
-#include "s_inexact_newton_for_zero_horizon_ocp.h"
-#include "s_inexact_newton_for_zero_horizon_ocp_mfgmres_args.h"
+#include "cgmres_initializer/s_inexact_newton_for_zero_horizon_ocp.h"
+#include "cgmres_initializer/s_inexact_newton_for_zero_horizon_ocp_mfgmres_args.h"
 
 
 #ifdef __cplusplus

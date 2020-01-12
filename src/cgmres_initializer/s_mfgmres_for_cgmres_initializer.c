@@ -1,4 +1,4 @@
-#include "s_mfgmres_for_cgmres_initializer.h"
+#include "cgmres_initializer/s_mfgmres_for_cgmres_initializer.h"
 
 
 #define MFGMRES_STRSIZE s_mfgmres_for_cgmres_initializer_strsize

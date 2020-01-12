@@ -11,6 +11,7 @@ target_include_directories(
     d_single_shooting_ocp_test 
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -45,6 +46,7 @@ target_include_directories(
     s_single_shooting_ocp_test 
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -81,6 +83,7 @@ target_include_directories(
     d_single_shooting_continuation_test 
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -116,6 +119,7 @@ target_include_directories(
     s_single_shooting_continuation_test 
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -154,6 +158,7 @@ target_include_directories(
     d_mfgmres_for_single_shooting_cgmres_test 
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -191,6 +196,7 @@ target_include_directories(
     s_mfgmres_for_single_shooting_cgmres_test 
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
@@ -234,6 +240,7 @@ target_include_directories(
     d_single_shooting_cgmres_test 
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
@@ -277,6 +284,7 @@ target_include_directories(
     s_single_shooting_cgmres_test 
     PUBLIC
     ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common

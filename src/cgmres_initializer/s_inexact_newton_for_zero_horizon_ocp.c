@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "s_memory_manager.h"
-#include "s_linear_algebra.h"
-#include "s_inexact_newton_for_zero_horizon_ocp.h"
+#include "cgmres_initializer/s_inexact_newton_for_zero_horizon_ocp.h"
+#include "common/s_memory_manager.h"
+#include "common/s_linear_algebra.h"
 
 
 #define REAL float

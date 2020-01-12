@@ -6,6 +6,7 @@ add_executable(
 target_include_directories(
     d_time_varying_smooth_horizon_test 
     PUBLIC
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
@@ -34,6 +35,7 @@ add_executable(
 target_include_directories(
     s_time_varying_smooth_horizon_test 
     PUBLIC
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
@@ -63,6 +65,7 @@ add_executable(
 target_include_directories(
     d_givens_rotation_test
     PUBLIC
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
@@ -92,6 +95,7 @@ add_executable(
 target_include_directories(
     s_givens_rotation_test
     PUBLIC
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
@@ -121,6 +125,7 @@ add_executable(
 target_include_directories(
     d_memory_manager_test
     PUBLIC
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
@@ -149,6 +154,7 @@ add_executable(
 target_include_directories(
     s_memory_manager_test
     PUBLIC
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
@@ -178,6 +184,7 @@ add_executable(
 target_include_directories(
     d_linear_algebra_test
     PUBLIC
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}
@@ -207,6 +214,7 @@ add_executable(
 target_include_directories(
     s_linear_algebra_test
     PUBLIC
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}/common
     ${GTEST_INCLUDE_PATH}
     ${GMOCK_INCLUDE_PATH}

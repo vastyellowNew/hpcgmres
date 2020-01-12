@@ -1,4 +1,4 @@
-#include "s_linear_algebra.h"
+#include "common/s_linear_algebra.h"
 
 
 void hpcgmres_svecset(int dim, float value, float *x) {

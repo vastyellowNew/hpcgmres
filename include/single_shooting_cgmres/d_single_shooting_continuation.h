@@ -2,8 +2,8 @@
 #define HPCGMRES_D_SINGLE_SHOOTING_CONTINUATION_H_
 
 
-#include "d_single_shooting_ocp.h"
-#include "d_single_shooting_continuation_mfgmres_args.h"
+#include "single_shooting_cgmres/d_single_shooting_ocp.h"
+#include "single_shooting_cgmres/d_single_shooting_continuation_mfgmres_args.h"
 
 
 #ifdef __cplusplus

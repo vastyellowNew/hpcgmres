@@ -1,9 +1,9 @@
-#include "s_cgmres_initializer.h"
+#include "cgmres_initializer/s_cgmres_initializer.h"
 
-#include "s_mfgmres_for_cgmres_initializer.h"
-#include "s_inexact_newton_for_zero_horizon_ocp.h"
-#include "s_memory_manager.h"
-#include "s_linear_algebra.h"
+#include "cgmres_initializer/s_mfgmres_for_cgmres_initializer.h"
+#include "cgmres_initializer/s_inexact_newton_for_zero_horizon_ocp.h"
+#include "common/s_memory_manager.h"
+#include "common/s_linear_algebra.h"
 
 
 #define REAL float

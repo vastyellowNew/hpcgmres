@@ -1,8 +1,8 @@
-#include "d_single_shooting_ocp.h"
+#include "single_shooting_cgmres/d_single_shooting_ocp.h"
 #include "d_nmpc_model.h"
-#include "d_time_varying_smooth_horizon.h"
-#include "d_linear_algebra.h"
-#include "d_memory_manager.h"
+#include "common/d_time_varying_smooth_horizon.h"
+#include "common/d_linear_algebra.h"
+#include "common/d_memory_manager.h"
 
 
 #define REAL double

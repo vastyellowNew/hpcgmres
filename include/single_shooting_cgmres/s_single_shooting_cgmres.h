@@ -2,10 +2,10 @@
 #define HPCGMRES_S_SINGLE_SHOOTING_CGMRES_H_
 
 
-#include "s_mfgmres_for_single_shooting_cgmres.h"
-#include "s_single_shooting_continuation.h"
-#include "s_single_shooting_continuation_mfgmres_args.h"
-#include "s_cgmres_initializer.h"
+#include "single_shooting_cgmres/s_mfgmres_for_single_shooting_cgmres.h"
+#include "single_shooting_cgmres/s_single_shooting_continuation.h"
+#include "single_shooting_cgmres/s_single_shooting_continuation_mfgmres_args.h"
+#include "cgmres_initializer/s_cgmres_initializer.h"
 
 
 #ifdef __cplusplus

@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "d_memory_manager.h"
-#include "d_linear_algebra.h"
-#include "d_inexact_newton_for_zero_horizon_ocp.h"
+#include "cgmres_initializer/d_inexact_newton_for_zero_horizon_ocp.h"
+#include "common/d_memory_manager.h"
+#include "common/d_linear_algebra.h"
 
 
 #define REAL double
