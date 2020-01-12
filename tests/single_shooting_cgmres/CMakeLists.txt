@@ -10,7 +10,6 @@ add_executable(
 target_include_directories(
     d_single_shooting_ocp_test 
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
@@ -45,7 +44,6 @@ add_executable(
 target_include_directories(
     s_single_shooting_ocp_test 
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
@@ -82,7 +80,6 @@ add_executable(
 target_include_directories(
     d_single_shooting_continuation_test 
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
@@ -118,7 +115,6 @@ add_executable(
 target_include_directories(
     s_single_shooting_continuation_test 
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
@@ -157,7 +153,6 @@ add_executable(
 target_include_directories(
     d_mfgmres_for_single_shooting_cgmres_test 
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
@@ -195,7 +190,6 @@ add_executable(
 target_include_directories(
     s_mfgmres_for_single_shooting_cgmres_test 
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/single_shooting_cgmres
     ${INCLUDE_DIR}/common
@@ -216,4 +210,91 @@ add_dependencies(
 add_test(
     NAME s_mfgmres_for_single_shooting_cgmres_test
     COMMAND $<TARGET_FILE:s_mfgmres_for_single_shooting_cgmres_test>
+)
+
+
+add_executable(
+    d_single_shooting_cgmres_test 
+    d_single_shooting_cgmres_test.cpp
+    ${SRC_DIR}/single_shooting_cgmres/d_single_shooting_cgmres.c
+    ${SRC_DIR}/single_shooting_cgmres/d_mfgmres_for_single_shooting_cgmres.c
+    ${SRC_DIR}/single_shooting_cgmres/d_single_shooting_continuation.c
+    ${SRC_DIR}/single_shooting_cgmres/d_single_shooting_ocp.c
+    ${SRC_DIR}/common/d_time_varying_smooth_horizon.c
+    ${SRC_DIR}/cgmres_initializer/d_cgmres_initializer.c
+    ${SRC_DIR}/cgmres_initializer/d_mfgmres_for_cgmres_initializer.c
+    ${SRC_DIR}/cgmres_initializer/d_inexact_newton_for_zero_horizon_ocp.c
+    ${SRC_DIR}/cgmres_initializer/d_zero_horizon_ocp.c
+    ${NMPC_MODEL_DIR}/d_nmpc_model.c
+    ${SRC_DIR}/common/d_memory_manager.c
+    ${SRC_DIR}/common/d_linear_algebra.c
+    ${SRC_DIR}/common/d_givens_rotation.c
+)
+target_include_directories(
+    d_single_shooting_cgmres_test 
+    PUBLIC
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/single_shooting_cgmres
+    ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    d_single_shooting_cgmres_test 
+    PUBLIC
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    d_single_shooting_cgmres_test 
+    googletest
+)
+add_test(
+    NAME d_single_shooting_cgmres_test
+    COMMAND $<TARGET_FILE:d_single_shooting_cgmres_test>
+)
+
+add_executable(
+    s_single_shooting_cgmres_test 
+    s_single_shooting_cgmres_test.cpp
+    ${SRC_DIR}/single_shooting_cgmres/s_single_shooting_cgmres.c
+    ${SRC_DIR}/single_shooting_cgmres/s_mfgmres_for_single_shooting_cgmres.c
+    ${SRC_DIR}/single_shooting_cgmres/s_single_shooting_continuation.c
+    ${SRC_DIR}/single_shooting_cgmres/s_single_shooting_ocp.c
+    ${SRC_DIR}/common/s_time_varying_smooth_horizon.c
+    ${SRC_DIR}/cgmres_initializer/s_cgmres_initializer.c
+    ${SRC_DIR}/cgmres_initializer/s_mfgmres_for_cgmres_initializer.c
+    ${SRC_DIR}/cgmres_initializer/s_inexact_newton_for_zero_horizon_ocp.c
+    ${SRC_DIR}/cgmres_initializer/s_zero_horizon_ocp.c
+    ${NMPC_MODEL_DIR}/s_nmpc_model.c
+    ${SRC_DIR}/common/s_memory_manager.c
+    ${SRC_DIR}/common/s_linear_algebra.c
+    ${SRC_DIR}/common/s_givens_rotation.c
+)
+target_include_directories(
+    s_single_shooting_cgmres_test 
+    PUBLIC
+    ${NMPC_MODEL_DIR}
+    ${INCLUDE_DIR}/single_shooting_cgmres
+    ${INCLUDE_DIR}/cgmres_initializer
+    ${INCLUDE_DIR}/common
+    ${GTEST_INCLUDE_PATH}
+    ${GMOCK_INCLUDE_PATH}
+    ${GTEST_LIBRARY_PATH}
+)
+target_link_libraries(
+    s_single_shooting_cgmres_test 
+    PUBLIC
+    GTest::GTest
+    GTest::GMock
+)
+add_dependencies(
+    s_single_shooting_cgmres_test 
+    googletest
+)
+add_test(
+    NAME s_single_shooting_cgmres_test
+    COMMAND $<TARGET_FILE:s_single_shooting_cgmres_test>
 )

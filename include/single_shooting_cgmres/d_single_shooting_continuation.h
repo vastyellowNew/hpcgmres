@@ -62,6 +62,12 @@ double d_single_shooting_continuation_get_error_norm(
 void d_single_shooting_continuation_reset_horizon_length(
     struct d_single_shooting_continuation *continuation, double initial_time);
 
+int d_single_shooting_continuation_dimx();
+
+int d_single_shooting_continuation_dimu();
+
+int d_single_shooting_continuation_dimc();
+
 
 #ifdef __cplusplus
 } /* extern "C" */

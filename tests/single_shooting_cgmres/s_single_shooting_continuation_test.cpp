@@ -163,6 +163,13 @@ TEST_F(s_single_shooting_continuation_test, reset_horizon) {
 }
 
 
+TEST_F(s_single_shooting_continuation_test, dim) {
+  EXPECT_EQ(dimx, s_single_shooting_continuation_dimx());
+  EXPECT_EQ(dimu, s_single_shooting_continuation_dimu());
+  EXPECT_EQ(dimc, s_single_shooting_continuation_dimc());
+}
+
+
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

@@ -8,7 +8,6 @@ add_executable(
 target_include_directories(
     d_zero_horizon_ocp_test
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
@@ -41,7 +40,6 @@ add_executable(
 target_include_directories(
     s_zero_horizon_ocp_test
     PUBLIC
-    ${BLASFEO_INCLUDE_PATH}
     ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}/cgmres_initializer
     ${INCLUDE_DIR}/common
