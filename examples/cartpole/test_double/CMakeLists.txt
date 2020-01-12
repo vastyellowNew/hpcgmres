@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(cartpolesim C)
+project(cartpolesim C CXX)
 
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/../../../src)
@@ -53,9 +53,10 @@ target_link_libraries(
 
 add_executable(
     d_main
-    d_main.c
-    ${SRC_DIR}/common/d_memory_manager.c
-    ${SRC_DIR}/common/d_linear_algebra.c
+    d_main.cpp
+    ${CMAKE_SOURCE_DIR}/../../simulator/cgmres_simulator.cpp
+    ${CMAKE_SOURCE_DIR}/../../simulator/numerical_integrator.cpp
+    ${CMAKE_SOURCE_DIR}/../../simulator/save_simulation_data.cpp
 )
 target_link_libraries(
     d_main
@@ -65,6 +66,7 @@ target_link_libraries(
 target_include_directories(
     d_main
     PRIVATE
-    ${NMPC_MODEL_DIR}
     ${INCLUDE_DIR}
+    ${NMPC_MODEL_DIR}
+    ${CMAKE_SOURCE_DIR}/../../simulator
 )
