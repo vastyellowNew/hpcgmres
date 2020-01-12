@@ -22,7 +22,7 @@ addons:
 
 
 install:
-  - source install_lcov.sh
+  - source tests/install_lcov.sh
 
 script:
   - cd tests
