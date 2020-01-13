@@ -76,7 +76,7 @@ TEST_F(d_mfgmres_for_cgmres_initializer_test, solve_linear_problem) {
   for (int i=0; i<imax; ++i) {
     d_mfgmres_for_cgmres_initializer_solve_linear_problem(&mfgmres, &newton, 
                                                           &args, update);
-    hpcgmres_dvecadd(dim_solution, update, solution);
+    cgmres_dvecadd(dim_solution, update, solution);
   }
   double delta = 1.0e-05;
   double err_norm 

@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_S_MEMORY_MANAGER_H_
-#define HPCGMRES_S_MEMORY_MANAGER_H_
+#ifndef CGMRES_S_MEMORY_MANAGER_H_
+#define CGMRES_S_MEMORY_MANAGER_H_
 
 
 #ifdef __cplusplus
@@ -18,4 +18,4 @@ void free_smat(float **dmat);
 #endif
 
 
-#endif // HPCGMRES_S_MEMORY_MANAGER_H_
+#endif // CGMRES_S_MEMORY_MANAGER_H_

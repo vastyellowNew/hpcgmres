@@ -92,17 +92,17 @@ TEST_F(d_single_shooting_ocp_test, compute_optimality_residual) {
                                                                    current_time);
   double delta_tau = horizon_length / N;
   d_nmpc_model_f(&model, current_time, x0, solution, dx);
-  hpcgmres_daxpy(dimx, delta_tau, dx, x0, x_seq[0]);
+  cgmres_daxpy(dimx, delta_tau, dx, x0, x_seq[0]);
   double tau = current_time + delta_tau;
   for (int ii=1; ii<N; ++ii, tau+=delta_tau) {
     d_nmpc_model_f(&model, tau, x_seq[ii-1], &(solution[ii*dimuc]), dx);
-    hpcgmres_daxpy(dimx, delta_tau, dx, x_seq[ii-1], x_seq[ii]);
+    cgmres_daxpy(dimx, delta_tau, dx, x_seq[ii-1], x_seq[ii]);
   }
   d_nmpc_model_phix(&model, tau, x_seq[N-1], lmd_seq[N-1]);
   for (int ii=N-1; ii>=1; --ii, tau-=delta_tau) {
     d_nmpc_model_hx(&model, tau, x_seq[ii-1], &(solution[ii*dimuc]), 
                     lmd_seq[ii], dx);
-    hpcgmres_daxpy(dimx, delta_tau, dx, lmd_seq[ii], lmd_seq[ii-1]);
+    cgmres_daxpy(dimx, delta_tau, dx, lmd_seq[ii], lmd_seq[ii-1]);
   }
   tau = current_time;
   d_nmpc_model_hu(&model, tau, x0, solution, lmd_seq[0], opt_res);
@@ -123,7 +123,7 @@ TEST_F(d_single_shooting_ocp_test, predict_state) {
   double current_time = fabs((double)rand()/RAND_MAX);
   double prediction_length = fabs((double)rand()/RAND_MAX);
   d_nmpc_model_f(&model, current_time, x0, solution, dx);
-  hpcgmres_daxpy(dimx, prediction_length, dx, x0, x_seq[0]);
+  cgmres_daxpy(dimx, prediction_length, dx, x0, x_seq[0]);
   d_single_shooting_ocp_predict_state_from_solution(&ocp, current_time, x0,
                                                     solution, prediction_length, 
                                                     x_seq[1]);

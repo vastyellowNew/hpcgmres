@@ -10,7 +10,7 @@
 
 extern "C" {
 #include "d_nmpc_model.h"
-#include "hpcgmres.h"
+#include "cgmres.h"
 }
 
 

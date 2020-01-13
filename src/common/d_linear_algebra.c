@@ -1,7 +1,7 @@
 #include "common/d_linear_algebra.h"
 
 
-void hpcgmres_dvecset(int dim, double value, double *x) {
+void cgmres_dvecset(int dim, double value, double *x) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     x[i  ] = value;
@@ -15,7 +15,7 @@ void hpcgmres_dvecset(int dim, double value, double *x) {
 }
 
 
-void hpcgmres_dveccp(int dim, double *x, double *y) {
+void cgmres_dveccp(int dim, double *x, double *y) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     y[i  ] = x[i  ];
@@ -29,7 +29,7 @@ void hpcgmres_dveccp(int dim, double *x, double *y) {
 }
 
 
-void hpcgmres_dvecmcp(int dim, double a, double *x, double *y) {
+void cgmres_dvecmcp(int dim, double a, double *x, double *y) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     y[i  ] = a*x[i  ];
@@ -43,7 +43,7 @@ void hpcgmres_dvecmcp(int dim, double a, double *x, double *y) {
 }
 
 
-double hpcgmres_dvecdot(int dim, double *x, double *y) {
+double cgmres_dvecdot(int dim, double *x, double *y) {
   int i = 0;
   double dot = 0.0;
   for ( ; i<dim-3; i+=4) {
@@ -59,7 +59,7 @@ double hpcgmres_dvecdot(int dim, double *x, double *y) {
 }
 
 
-double hpcgmres_dvecnrm2(int dim, double *x) {
+double cgmres_dvecnrm2(int dim, double *x) {
   int i = 0;
   double nrm = 0.0;
   for ( ; i<dim-3; i+=4) {
@@ -75,7 +75,7 @@ double hpcgmres_dvecnrm2(int dim, double *x) {
 }
 
 
-void hpcgmres_dvecmul(int dim, double a, double *x) {
+void cgmres_dvecmul(int dim, double a, double *x) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     x[i  ] *= a;
@@ -89,7 +89,7 @@ void hpcgmres_dvecmul(int dim, double a, double *x) {
 }
 
 
-void hpcgmres_dvecadd(int dim, double *x, double *y) {
+void cgmres_dvecadd(int dim, double *x, double *y) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     y[i  ] += x[i  ];
@@ -103,7 +103,7 @@ void hpcgmres_dvecadd(int dim, double *x, double *y) {
 }
 
 
-void hpcgmres_dvecmadd(int dim, double a, double *x, double *y) {
+void cgmres_dvecmadd(int dim, double a, double *x, double *y) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     y[i  ] += a*x[i  ];
@@ -117,7 +117,7 @@ void hpcgmres_dvecmadd(int dim, double a, double *x, double *y) {
 }
 
 
-void hpcgmres_daxpy(int dim, double a, double *x, double *y, double *result) {
+void cgmres_daxpy(int dim, double a, double *x, double *y, double *result) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     result[i  ] = a*x[i  ] + y[i  ];
@@ -131,8 +131,8 @@ void hpcgmres_daxpy(int dim, double a, double *x, double *y, double *result) {
 }
 
 
-void hpcgmres_daxpby(int dim, double a, double *x, double b, double *y, 
-                     double *result) {
+void cgmres_daxpby(int dim, double a, double *x, double b, double *y, 
+                   double *result) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     result[i  ] = a*x[i  ] + b*y[i  ];

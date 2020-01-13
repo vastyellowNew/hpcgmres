@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_D_ZERO_HORIZON_OCP_H_
-#define HPCGMRES_D_ZERO_HORIZON_OCP_H_
+#ifndef CGMRES_D_ZERO_HORIZON_OCP_H_
+#define CGMRES_D_ZERO_HORIZON_OCP_H_
 
 
 #include "d_nmpc_model.h"
@@ -49,4 +49,4 @@ int d_zero_horizon_ocp_dimc();
 #endif
 
 
-#endif // HPCGMRES_D_ZERO_HORIZON_OCP_H_
+#endif // CGMRES_D_ZERO_HORIZON_OCP_H_

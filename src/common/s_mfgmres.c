@@ -18,12 +18,12 @@
 #define FREE_MAT free_smat
 #define FREE_VEC free_svec
 
-#define VECSET hpcgmres_svecset
-#define VECNRM2 hpcgmres_svecnrm2
-#define VECMCP hpcgmres_svecmcp
-#define VECDOT hpcgmres_svecdot
-#define VECMAD hpcgmres_svecmadd
-#define VECMUL hpcgmres_svecmul
+#define VECSET cgmres_svecset
+#define VECNRM2 cgmres_svecnrm2
+#define VECMCP cgmres_svecmcp
+#define VECDOT cgmres_svecdot
+#define VECMAD cgmres_svecmadd
+#define VECMUL cgmres_svecmul
 
 
 #include "x_mfgmres.c"

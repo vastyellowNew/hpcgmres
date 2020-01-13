@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_D_SINGLE_SHOOTING_CGMRES_H_
-#define HPCGMRES_D_SINGLE_SHOOTING_CGMRES_H_
+#ifndef CGMRES_D_SINGLE_SHOOTING_CGMRES_H_
+#define CGMRES_D_SINGLE_SHOOTING_CGMRES_H_
 
 
 #include "single_shooting_cgmres/d_mfgmres_for_single_shooting_cgmres.h"
@@ -66,4 +66,4 @@ double d_single_shooting_cgmres_get_error_norm(
 #endif
 
 
-#endif // HPCGMRES_D_SINGLE_SHOOTING_CGMRES_H_
+#endif // CGMRES_D_SINGLE_SHOOTING_CGMRES_H_

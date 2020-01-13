@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_S_MFGMRES_FOR_SINGLE_SHOOTING_CGMRES_H_
-#define HPCGMRES_S_MFGMRES_FOR_SINGLE_SHOOTING_CGMRES_H_
+#ifndef CGMRES_S_MFGMRES_FOR_SINGLE_SHOOTING_CGMRES_H_
+#define CGMRES_S_MFGMRES_FOR_SINGLE_SHOOTING_CGMRES_H_
 
 
 #include "single_shooting_cgmres/s_single_shooting_continuation.h"
@@ -48,4 +48,4 @@ void s_mfgmres_for_single_shooting_cgmres_solve_linear_problem(
 #endif
 
 
-#endif // HPCGMRES_S_MFGMRES_FOR_SINGLE_SHOOTING_CGMRES_H_
+#endif // CGMRES_S_MFGMRES_FOR_SINGLE_SHOOTING_CGMRES_H_

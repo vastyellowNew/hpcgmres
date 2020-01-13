@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_S_GIVENS_ROTATION_H_
-#define HPCGMRES_S_GIVENS_ROTATION_H_
+#ifndef CGMRES_S_GIVENS_ROTATION_H_
+#define CGMRES_S_GIVENS_ROTATION_H_
 
 
 #ifdef __cplusplus
@@ -14,4 +14,4 @@ void s_apply_givens_rotation(float *column_vec, float *givens_c_vec,
 #endif
 
 
-#endif // HPCGMRES_S_GIVENS_ROTATION_H_
+#endif // CGMRES_S_GIVENS_ROTATION_H_

@@ -42,7 +42,7 @@
 #define CGMRES_INITIALIZER_SET_INITIAL_GUESS_SOLUTION s_cgmres_initializer_set_initial_guess_solution
 #define CGMRES_INITIALIZER_COMPUTE_INITIAL_SOLUTION s_cgmres_initializer_compute_initial_solution
 
-#define VECCP hpcgmres_sveccp
+#define VECCP cgmres_sveccp
 
 #define ALLOCATE_VEC allocate_svec
 #define FREE_VEC free_svec

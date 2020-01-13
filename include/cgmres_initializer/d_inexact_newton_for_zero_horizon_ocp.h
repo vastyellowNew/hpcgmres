@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_D_INEXACT_NEWTON_FOR_ZERO_HORIZON_COP_H_
-#define HPCGMRES_D_INEXACT_NEWTON_FOR_ZERO_HORIZON_COP_H_
+#ifndef CGMRES_D_INEXACT_NEWTON_FOR_ZERO_HORIZON_COP_H_
+#define CGMRES_D_INEXACT_NEWTON_FOR_ZERO_HORIZON_COP_H_
 
 
 #include "cgmres_initializer/d_zero_horizon_ocp.h"
@@ -62,4 +62,4 @@ int d_inexact_newton_for_zero_horizon_ocp_dimc();
 #endif
 
 
-#endif // HPCGMRES_D_INEXACT_NEWTON_FOR_ZERO_HORIZON_COP_H_
+#endif // CGMRES_D_INEXACT_NEWTON_FOR_ZERO_HORIZON_COP_H_

@@ -38,7 +38,7 @@
 #define FREE_MAT free_dmat
 #define FREE_VEC free_dvec
 
-#define AXPY hpcgmres_daxpy 
+#define AXPY cgmres_daxpy 
 
 
 #include "x_single_shooting_ocp.c"

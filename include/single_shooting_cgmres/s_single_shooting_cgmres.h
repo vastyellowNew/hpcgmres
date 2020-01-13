@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_S_SINGLE_SHOOTING_CGMRES_H_
-#define HPCGMRES_S_SINGLE_SHOOTING_CGMRES_H_
+#ifndef CGMRES_S_SINGLE_SHOOTING_CGMRES_H_
+#define CGMRES_S_SINGLE_SHOOTING_CGMRES_H_
 
 
 #include "single_shooting_cgmres/s_mfgmres_for_single_shooting_cgmres.h"
@@ -66,4 +66,4 @@ float s_single_shooting_cgmres_get_error_norm(
 #endif
 
 
-#endif // HPCGMRES_S_SINGLE_SHOOTING_CGMRES_H_
+#endif // CGMRES_S_SINGLE_SHOOTING_CGMRES_H_

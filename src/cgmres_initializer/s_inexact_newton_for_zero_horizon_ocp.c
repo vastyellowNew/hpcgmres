@@ -37,9 +37,9 @@
 #define ALLOCATE_VEC allocate_svec
 #define FREE_VEC free_svec
 
-#define VECNRM2 hpcgmres_svecnrm2
-#define AXPY hpcgmres_saxpy
-#define AXPBY hpcgmres_saxpby
+#define VECNRM2 cgmres_svecnrm2
+#define AXPY cgmres_saxpy
+#define AXPBY cgmres_saxpby
 
 
 #include "x_inexact_newton_for_zero_horizon_ocp.c"

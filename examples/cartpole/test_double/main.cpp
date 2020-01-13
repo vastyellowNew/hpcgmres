@@ -2,9 +2,9 @@
 #include <sys/stat.h>
 
 extern "C" {
-#include "hpcgmres.h"
+#include "cgmres.h"
 }
-#include "cgmres_simulator.hpp"
+#include "d_simulator.hpp"
 
 
 int main() {

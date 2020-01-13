@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_S_TIME_VARYING_SMOOTH_HORIZON_H_
-#define HPCGMRES_S_TIME_VARYING_SMOOTH_HORIZON_H_
+#ifndef CGMRES_S_TIME_VARYING_SMOOTH_HORIZON_H_
+#define CGMRES_S_TIME_VARYING_SMOOTH_HORIZON_H_
 
 
 #ifdef __cplusplus
@@ -31,4 +31,4 @@ void s_time_varying_smooth_horizon_reset_length(
 #endif
 
 
-#endif // HPCGMRES_S_TIME_VARYING_SMOOTH_HORIZON_H_
+#endif // CGMRES_S_TIME_VARYING_SMOOTH_HORIZON_H_

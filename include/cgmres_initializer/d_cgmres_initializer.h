@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_D_CGMRES_INITIALIZER_H_
-#define HPCGMRES_D_CGMRES_INITIALIZER_H_
+#ifndef CGMRES_D_CGMRES_INITIALIZER_H_
+#define CGMRES_D_CGMRES_INITIALIZER_H_
 
 
 #include "cgmres_initializer/d_mfgmres_for_cgmres_initializer.h"
@@ -54,4 +54,4 @@ void d_cgmres_initializer_get_terminal_cost_derivative(
 #endif
 
 
-#endif // HPCGMRES_D_CGMRES_INITIALIZER_H_
+#endif // CGMRES_D_CGMRES_INITIALIZER_H_

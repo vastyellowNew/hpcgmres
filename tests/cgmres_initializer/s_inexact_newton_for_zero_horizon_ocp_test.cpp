@@ -76,20 +76,20 @@ TEST_F(s_inexact_newton_for_zero_horizon_ocp_test, b_and_ax) {
   args.current_solution_ptr = solution;
   float *opt_res = allocate_svec(dim_solution);
   float *opt_res1 = allocate_svec(dim_solution);
-  hpcgmres_saxpy(dim_solution, finite_diff, direction, solution, inc_solution);
+  cgmres_saxpy(dim_solution, finite_diff, direction, solution, inc_solution);
   s_zero_horizon_ocp_compute_optimality_residual(&newton.ocp, current_time, 
                                                  state, solution, opt_res);
   s_zero_horizon_ocp_compute_optimality_residual(&newton.ocp, current_time, 
                                                  state, inc_solution, opt_res1);
-  hpcgmres_saxpby(dim_solution, 1/finite_diff-1, opt_res, -1/finite_diff, 
-                  opt_res1, b_ref);
+  cgmres_saxpby(dim_solution, 1/finite_diff-1, opt_res, -1/finite_diff, 
+                opt_res1, b_ref);
   s_inexact_newton_for_zero_horizon_ocp_compute_b(&newton, &args, direction, b);
   for (int i=0; i<dim_solution; ++i) {
     EXPECT_EQ(b_ref[i], b[i]);
   }
 
-  hpcgmres_saxpby(dim_solution, -1/finite_diff, opt_res, 1/finite_diff, 
-                  opt_res1, ax_ref);
+  cgmres_saxpby(dim_solution, -1/finite_diff, opt_res, 1/finite_diff, 
+                opt_res1, ax_ref);
   s_inexact_newton_for_zero_horizon_ocp_compute_ax(&newton, &args, direction, ax);
   for (int i=0; i<dim_solution; ++i) {
     EXPECT_EQ(ax_ref[i], ax[i]);
@@ -103,7 +103,7 @@ TEST_F(s_inexact_newton_for_zero_horizon_ocp_test, error_norm) {
   float *opt_res = allocate_svec(dim_solution);
   s_zero_horizon_ocp_compute_optimality_residual(&newton.ocp, current_time, 
                                                  state, solution, opt_res);
-  float err_norm_ref = sqrt(hpcgmres_svecnrm2(dim_solution, opt_res));
+  float err_norm_ref = sqrt(cgmres_svecnrm2(dim_solution, opt_res));
   float err_norm = s_inexact_newton_for_zero_horizon_ocp_get_error_norm(&newton, current_time, state, solution);
   EXPECT_EQ(err_norm_ref, err_norm);
   free_svec(opt_res);

@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_D_SINGLE_SHOOTING_CONTINUATION_H_
-#define HPCGMRES_D_SINGLE_SHOOTING_CONTINUATION_H_
+#ifndef CGMRES_D_SINGLE_SHOOTING_CONTINUATION_H_
+#define CGMRES_D_SINGLE_SHOOTING_CONTINUATION_H_
 
 
 #include "single_shooting_cgmres/d_single_shooting_ocp.h"
@@ -74,4 +74,4 @@ int d_single_shooting_continuation_dimc();
 #endif
 
 
-#endif // HPCGMRES_D_SINGLE_SHOOTING_CONTINUATION_H_
+#endif // CGMRES_D_SINGLE_SHOOTING_CONTINUATION_H_

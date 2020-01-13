@@ -108,7 +108,7 @@ TEST_F(s_cgmres_initializer_test, compute_initial_solution) {
   while (optimality_error > 1.0e-08 && num_itr < 50) {
     s_mfgmres_for_cgmres_initializer_solve_linear_problem(&mfgmres, &newton, 
                                                           &args, update);
-    hpcgmres_svecadd(dim_solution, update, solution);
+    cgmres_svecadd(dim_solution, update, solution);
     optimality_error 
         = s_inexact_newton_for_zero_horizon_ocp_get_error_norm(&newton, 
                                                                current_time, 

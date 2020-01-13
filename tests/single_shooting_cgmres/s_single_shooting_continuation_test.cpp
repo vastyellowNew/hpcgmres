@@ -95,7 +95,7 @@ TEST_F(s_single_shooting_continuation_test, memsize) {
 
 TEST_F(s_single_shooting_continuation_test, integrate_solution) {
   float length = fabs((float)rand()/RAND_MAX);
-  hpcgmres_saxpy(dim_solution, length, direction, solution, inc_solution);
+  cgmres_saxpy(dim_solution, length, direction, solution, inc_solution);
   s_single_shooting_continuation_integrate_solution(&continuation, solution, 
                                                     direction, length);
   for (int i=0; i<dim_solution; ++i) {
@@ -115,24 +115,24 @@ TEST_F(s_single_shooting_continuation_test, compute_b_ans_ax) {
   float incrementes_time = current_time + finite_diff;
   s_single_shooting_ocp_predict_state_from_solution(&ocp, current_time, x0, 
                                                     solution, finite_diff, x1);
-  hpcgmres_saxpy(dim_solution, finite_diff, direction, solution, inc_solution);
+  cgmres_saxpy(dim_solution, finite_diff, direction, solution, inc_solution);
   s_single_shooting_ocp_compute_optimality_residual(&ocp, current_time, x0, 
                                                     solution, opt);
   s_single_shooting_ocp_compute_optimality_residual(&ocp, incrementes_time, x1, 
                                                     solution, opt1);
   s_single_shooting_ocp_compute_optimality_residual(&ocp, incrementes_time, x1, 
                                                     inc_solution, opt2);
-  hpcgmres_saxpby(dim_solution, 1/finite_diff-zeta, opt, -1/finite_diff, opt2, 
-                  b_ref); 
+  cgmres_saxpby(dim_solution, 1/finite_diff-zeta, opt, -1/finite_diff, opt2, 
+                b_ref); 
   for (int i=0; i<dim_solution; ++i) {
     EXPECT_EQ(b_ref[i], b[i]);
   }
 
-  hpcgmres_saxpy(dim_solution, finite_diff, direction, solution, inc_solution);
+  cgmres_saxpy(dim_solution, finite_diff, direction, solution, inc_solution);
   s_single_shooting_ocp_compute_optimality_residual(&ocp, incrementes_time, x1, 
                                                     inc_solution, opt2);
-  hpcgmres_saxpby(dim_solution, 1/finite_diff, opt2, -1/finite_diff, opt1, 
-                  ax_ref); 
+  cgmres_saxpby(dim_solution, 1/finite_diff, opt2, -1/finite_diff, opt1, 
+                ax_ref); 
   for (int i=0; i<dim_solution; ++i) {
     EXPECT_EQ(ax_ref[i], ax[i]);
   }
@@ -144,7 +144,7 @@ TEST_F(s_single_shooting_continuation_test, err_norm) {
 
   s_single_shooting_ocp_compute_optimality_residual(&ocp, current_time, x0, 
                                                     solution, opt);
-  float err_ref = sqrt(hpcgmres_svecnrm2(dim_solution, opt));
+  float err_ref = sqrt(cgmres_svecnrm2(dim_solution, opt));
   float err  = s_single_shooting_continuation_get_error_norm(&continuation, 
                                                               current_time, x0, 
                                                               solution);

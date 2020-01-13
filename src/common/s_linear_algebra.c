@@ -1,7 +1,7 @@
 #include "common/s_linear_algebra.h"
 
 
-void hpcgmres_svecset(int dim, float value, float *x) {
+void cgmres_svecset(int dim, float value, float *x) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     x[i  ] = value;
@@ -15,7 +15,7 @@ void hpcgmres_svecset(int dim, float value, float *x) {
 }
 
 
-void hpcgmres_sveccp(int dim, float *x, float *y) {
+void cgmres_sveccp(int dim, float *x, float *y) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     y[i  ] = x[i  ];
@@ -29,7 +29,7 @@ void hpcgmres_sveccp(int dim, float *x, float *y) {
 }
 
 
-void hpcgmres_svecmcp(int dim, float a, float *x, float *y) {
+void cgmres_svecmcp(int dim, float a, float *x, float *y) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     y[i  ] = a*x[i  ];
@@ -43,7 +43,7 @@ void hpcgmres_svecmcp(int dim, float a, float *x, float *y) {
 }
 
 
-float hpcgmres_svecdot(int dim, float *x, float *y) {
+float cgmres_svecdot(int dim, float *x, float *y) {
   int i = 0;
   float dot = 0.0;
   for ( ; i<dim-3; i+=4) {
@@ -59,7 +59,7 @@ float hpcgmres_svecdot(int dim, float *x, float *y) {
 }
 
 
-float hpcgmres_svecnrm2(int dim, float *x) {
+float cgmres_svecnrm2(int dim, float *x) {
   int i = 0;
   float nrm = 0.0;
   for ( ; i<dim-3; i+=4) {
@@ -75,7 +75,7 @@ float hpcgmres_svecnrm2(int dim, float *x) {
 }
 
 
-void hpcgmres_svecmul(int dim, float a, float *x) {
+void cgmres_svecmul(int dim, float a, float *x) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     x[i  ] *= a;
@@ -89,7 +89,7 @@ void hpcgmres_svecmul(int dim, float a, float *x) {
 }
 
 
-void hpcgmres_svecadd(int dim, float *x, float *y) {
+void cgmres_svecadd(int dim, float *x, float *y) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     y[i  ] += x[i  ];
@@ -103,7 +103,7 @@ void hpcgmres_svecadd(int dim, float *x, float *y) {
 }
 
 
-void hpcgmres_svecmadd(int dim, float a, float *x, float *y) {
+void cgmres_svecmadd(int dim, float a, float *x, float *y) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     y[i  ] += a*x[i  ];
@@ -117,7 +117,7 @@ void hpcgmres_svecmadd(int dim, float a, float *x, float *y) {
 }
 
 
-void hpcgmres_saxpy(int dim, float a, float *x, float *y, float *result) {
+void cgmres_saxpy(int dim, float a, float *x, float *y, float *result) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     result[i  ] = a*x[i  ] + y[i  ];
@@ -131,8 +131,8 @@ void hpcgmres_saxpy(int dim, float a, float *x, float *y, float *result) {
 }
 
 
-void hpcgmres_saxpby(int dim, float a, float *x, float b, float *y, 
-                     float *result) {
+void cgmres_saxpby(int dim, float a, float *x, float b, float *y, 
+                   float *result) {
   int i = 0;
   for ( ; i<dim-3; i+=4) {
     result[i  ] = a*x[i  ] + b*y[i  ];

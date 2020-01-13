@@ -35,10 +35,10 @@
 #define SINGLE_SHOOTING_OCP_DIMU s_single_shooting_ocp_dimu
 #define SINGLE_SHOOTING_OCP_DIMC s_single_shooting_ocp_dimc
 
-#define VECMAD hpcgmres_svecmadd
-#define AXPY hpcgmres_saxpy
-#define AXPBY hpcgmres_saxpby
-#define VECNRM2 hpcgmres_svecnrm2
+#define VECMAD cgmres_svecmadd
+#define AXPY cgmres_saxpy
+#define AXPBY cgmres_saxpby
+#define VECNRM2 cgmres_svecnrm2
 
 #define ALLOCATE_VEC allocate_svec
 #define FREE_VEC free_svec

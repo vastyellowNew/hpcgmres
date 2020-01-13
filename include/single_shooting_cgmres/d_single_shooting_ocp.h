@@ -36,12 +36,13 @@ void d_single_shooting_ocp_create(struct d_single_shooting_ocp *ocp, double T_f,
 void d_single_shooting_ocp_delete(struct d_single_shooting_ocp *ocp);
 
 void d_single_shooting_ocp_compute_optimality_residual(
-    struct d_single_shooting_ocp *ocp, double current_time, double *current_state, 
-    double *solution, double *optimality_residual);
+    struct d_single_shooting_ocp *ocp, double current_time, 
+    double *current_state, double *solution, double *optimality_residual);
 
 void d_single_shooting_ocp_predict_state_from_solution(
-    struct d_single_shooting_ocp *ocp, double current_time, double *current_state, 
-    double *solution, double prediction_length, double *predicted_state);
+    struct d_single_shooting_ocp *ocp, double current_time, 
+    double *current_state, double *solution, double prediction_length, 
+    double *predicted_state);
 
 void d_single_shooting_ocp_reset_horizon_length(
     struct d_single_shooting_ocp *ocp, double initial_time);

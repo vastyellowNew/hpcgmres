@@ -35,8 +35,8 @@
 #define ALLOCATE_VEC allocate_svec
 #define FREE_VEC free_svec
 
-#define VECCP hpcgmres_sveccp
-#define VECAD hpcgmres_svecadd
+#define VECCP cgmres_sveccp
+#define VECAD cgmres_svecadd
 
 
 #include "x_cgmres_initializer.c"

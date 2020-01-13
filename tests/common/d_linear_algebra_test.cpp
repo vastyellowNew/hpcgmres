@@ -43,7 +43,7 @@ TEST_F(d_linear_algebra_test, dvecset) {
   for (int i=0; i<dim; ++i) {
     x_ref[i] = a;
   }
-  hpcgmres_dvecset(dim, a, x);
+  cgmres_dvecset(dim, a, x);
   for (int i=0; i<dim; ++i) {
     EXPECT_EQ(x_ref[i], x[i]);
   }
@@ -57,7 +57,7 @@ TEST_F(d_linear_algebra_test, dveccp) {
   for (int i=0; i<dim; ++i) {
     y_ref[i] = x[i];
   }
-  hpcgmres_dveccp(dim, x, y);
+  cgmres_dveccp(dim, x, y);
   for (int i=0; i<dim; ++i) {
     EXPECT_EQ(y_ref[i], y[i]);
   }
@@ -71,7 +71,7 @@ TEST_F(d_linear_algebra_test, dvecmcp) {
   for (int i=0; i<dim; ++i) {
     y_ref[i] = b*x[i];
   }
-  hpcgmres_dvecmcp(dim, b, x, y);
+  cgmres_dvecmcp(dim, b, x, y);
   for (int i=0; i<dim; ++i) {
     EXPECT_EQ(y_ref[i], y[i]);
   }
@@ -89,7 +89,7 @@ TEST_F(d_linear_algebra_test, dvecdot) {
   for (int i=0; i<dim; ++i) {
     dot_ref += x[i] * y[i];
   }
-  double dot = hpcgmres_dvecdot(dim, x, y);
+  double dot = cgmres_dvecdot(dim, x, y);
   EXPECT_EQ(dot_ref, dot);
 }
 
@@ -102,7 +102,7 @@ TEST_F(d_linear_algebra_test, dvecnrm2) {
   for (int i=0; i<dim; ++i) {
     nrm_ref += x[i] * x[i];
   }
-  double nrm = hpcgmres_dvecnrm2(dim, x);
+  double nrm = cgmres_dvecnrm2(dim, x);
   EXPECT_EQ(nrm_ref, nrm);
 }
 
@@ -114,7 +114,7 @@ TEST_F(d_linear_algebra_test, dvecmul) {
   for (int i=0; i<dim; ++i) {
     x_ref[i] = b * x[i];
   }
-  hpcgmres_dvecmul(dim, b, x);
+  cgmres_dvecmul(dim, b, x);
   for (int i=0; i<dim; ++i) {
     EXPECT_EQ(x_ref[i], x[i]);
   }
@@ -131,7 +131,7 @@ TEST_F(d_linear_algebra_test, dvecadd) {
   for (int i=0; i<dim; ++i) {
     y_ref[i] = x[i] + y[i];
   }
-  hpcgmres_dvecadd(dim, x, y);
+  cgmres_dvecadd(dim, x, y);
   for (int i=0; i<dim; ++i) {
     EXPECT_EQ(y_ref[i], y[i]);
   }
@@ -148,7 +148,7 @@ TEST_F(d_linear_algebra_test, dvecmadd) {
   for (int i=0; i<dim; ++i) {
     y_ref[i] = a*x[i] + y[i];
   }
-  hpcgmres_dvecmadd(dim, a, x, y);
+  cgmres_dvecmadd(dim, a, x, y);
   for (int i=0; i<dim; ++i) {
     EXPECT_EQ(y_ref[i], y[i]);
   }
@@ -165,7 +165,7 @@ TEST_F(d_linear_algebra_test, daxpy) {
   for (int i=0; i<dim; ++i) {
     res_ref[i] = a*x[i] + y[i];
   }
-  hpcgmres_daxpy(dim, a, x, y, res);
+  cgmres_daxpy(dim, a, x, y, res);
   for (int i=0; i<dim; ++i) {
     EXPECT_EQ(res_ref[i], res[i]);
   }
@@ -182,7 +182,7 @@ TEST_F(d_linear_algebra_test, daxpby) {
   for (int i=0; i<dim; ++i) {
     res_ref[i] = a*x[i] + b*y[i];
   }
-  hpcgmres_daxpby(dim, a, x, b, y, res);
+  cgmres_daxpby(dim, a, x, b, y, res);
   for (int i=0; i<dim; ++i) {
     EXPECT_EQ(res_ref[i], res[i]);
   }

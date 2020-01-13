@@ -1,5 +1,5 @@
-#ifndef HPCGMRES_D_MFGMRES_FOR_CGMRES_INITIALIZER_H_
-#define HPCGMRES_D_MFGMRES_FOR_CGMRES_INITIALIZER_H_
+#ifndef CGMRES_D_MFGMRES_FOR_CGMRES_INITIALIZER_H_
+#define CGMRES_D_MFGMRES_FOR_CGMRES_INITIALIZER_H_
 
 
 #include "cgmres_initializer/d_inexact_newton_for_zero_horizon_ocp.h"
@@ -47,4 +47,4 @@ void d_mfgmres_for_cgmres_initializer_solve_linear_problem(
 #endif
 
 
-#endif // HPCGMRES_D_MFGMRES_FOR_CGMRES_INITIALIZER_H_
+#endif // CGMRES_D_MFGMRES_FOR_CGMRES_INITIALIZER_H_
